@@ -13,7 +13,7 @@ import WeatherOverview from "./WeatherOverview";
 // And add a Cleanup function
 const getData = async (location) => {
 
-	let endpoint = 'http://api.openweathermap.org/geo/1.0/direct?q=';
+	let endpoint = 'https://api.openweathermap.org/geo/1.0/direct?q=';
 	const appID = '&appid=cad8852b13cf2ae06dc0303a9c81ac0c';
 
 	let url = endpoint + location + appID + '&limit=5';

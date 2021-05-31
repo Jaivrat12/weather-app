@@ -20,10 +20,6 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-/* .overview {
-	margin-top: calc(1rem + 1vw);
-} */
-
 .overview .condition {
 	
 	margin: auto;
@@ -47,7 +43,17 @@ body {
 .overview .temps {
 
 	margin: auto;
-	width: fit-content;
+	max-width: 360px;
 	display: flex;
 	align-items: center;
+	justify-content: space-around;
+}
+
+@media only screen and (max-width: 600px) {
+	
+	.overview .temps {
+
+		max-width: 320px;
+		justify-content: space-evenly;
+	}
 }

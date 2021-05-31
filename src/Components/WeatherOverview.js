@@ -6,29 +6,37 @@ import { Divider } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
 
     temp: {
+        fontFamily: 'Quicksand',
         position: 'relative',
-        marginRight: '0.25em',
+        marginRight: '0.05em',
 		// fontSize: '7em',
-        fontSize: '10em',
-        fontWeight: 300,
-        [theme.breakpoints.up('sm')]: {
-            marginRight: '0.3em',
-            fontSize: '10em',
+        fontSize: '8.5em',
+        fontWeight: 400,
+        [theme.breakpoints.up(375)]: {
+            fontSize: '9.5em',
         },
-        '& sup': {
+        [theme.breakpoints.up('sm')]: {
+            fontSize: '10em',
+            fontWeight: 300,
+        },
+        '& span': {
             position: 'absolute',
-            right: '-0.475em',
-            paddingTop: '0.4em',
-            fontSize: '0.325em',
-            fontWeight: 400,
+            // right: '-0.475em',
+            [theme.breakpoints.down('sm')]: {
+                right: '-0.85em',
+            },
+            paddingTop: '0.625em',
+            fontSize: '0.275em',
+            fontWeight: 500,
         },
     },
     tempRange: {
+        fontFamily: 'Quicksand',
         width: 'fit-content',
         textAlign: 'center',
-        fontSize: '1.5em',
+        fontSize: '1.85em',
         // fontSize: '2em',
-        fontWeight: 400,
+        fontWeight: 500,
         // fontWeight: 100,
         [theme.breakpoints.up('sm')]: {
             fontSize: '2em',
@@ -60,7 +68,7 @@ const WeatherOverview = ({ weatherData: data, tempRange }) => {
                     className={ classes.temp }
                     gutterBottom
                 >
-                    { Math.round(data.temp) }<sup>°C</sup>
+                    { Math.round(data.temp) }<span>°C</span>
                 </Typography>
 
                 <Typography

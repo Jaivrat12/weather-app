@@ -56,7 +56,7 @@ const getData = async (location) => {
 const useStyles = makeStyles((theme) => ({
 
 	title: {
-		margin: '0.4em auto 1.2em',
+		margin: '0.4em auto 0',
 		padding: '0 0.8em',
 		position: 'relative',
 		width: 'fit-content',

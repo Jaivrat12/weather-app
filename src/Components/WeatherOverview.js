@@ -1,6 +1,6 @@
 import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
 import { makeStyles } from '@material-ui/core/styles';
-import { Divider } from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -9,7 +9,6 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'Quicksand',
         position: 'relative',
         marginRight: '0.05em',
-		// fontSize: '7em',
         fontSize: '8.5em',
         fontWeight: 400,
         [theme.breakpoints.up(375)]: {
@@ -21,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
         },
         '& span': {
             position: 'absolute',
-            // right: '-0.475em',
             [theme.breakpoints.down('sm')]: {
                 right: '-0.85em',
             },
@@ -35,12 +33,9 @@ const useStyles = makeStyles((theme) => ({
         width: 'fit-content',
         textAlign: 'center',
         fontSize: '1.85em',
-        // fontSize: '2em',
         fontWeight: 500,
-        // fontWeight: 100,
         [theme.breakpoints.up('sm')]: {
             fontSize: '2em',
-            // fontWeight: 300,
         },
         '& hr': {
             margin: '0.12em 0',
@@ -49,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+// Try changing min-max layout/position for small screens
 const WeatherOverview = ({ weatherData: data, tempRange }) => {
     
     const classes = useStyles();

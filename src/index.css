@@ -22,22 +22,23 @@ body {
 
 .overview .condition {
 	
-	margin: auto;
+	margin: 0 auto calc(1.5em - 2.25vw);
 	width: fit-content;
 	position: relative;
 	display: flex;
 	align-items: center;
-	font-size: calc(1.25rem + 0.25vw);
+	font-size: 1.25em;
 }
 
 .overview .condition img {
 
+	width: 2em;
 	position: absolute;
 	left: 0;
 }
 
 .overview .condition span {
-	padding: 0 2.4em;
+	padding: 0 2em;
 }
 
 .overview .temps {

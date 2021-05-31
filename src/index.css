@@ -4,8 +4,8 @@
 	box-sizing: border-box;
 }
 
-html {
-	min-height: 100vh;
+html, body {
+	min-height:100%;
 }
 
 body {
@@ -20,9 +20,9 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.overview {
+/* .overview {
 	margin-top: calc(1rem + 1vw);
-}
+} */
 
 .overview .condition {
 	
@@ -31,7 +31,7 @@ body {
 	position: relative;
 	display: flex;
 	align-items: center;
-	font-size: 1.25em;
+	font-size: calc(1.25rem + 0.25vw);
 }
 
 .overview .condition img {
@@ -50,12 +50,4 @@ body {
 	width: fit-content;
 	display: flex;
 	align-items: center;
-}
-
-.overview sup {
-
-	position: absolute;
-	padding-top: 0.4em;
-	font-size: 0.35em;
-	font-weight: 300;
 }

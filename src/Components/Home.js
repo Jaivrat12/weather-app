@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 
+import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography"
 import { makeStyles } from "@material-ui/core/styles"
 
 import LocationOnOutlined from "@material-ui/icons/LocationOnOutlined";
 
 import { capitalize } from "../Utilities/utilities";
-import WeatherOverview from "./WeatherOverview";
+import CurrentWeather from "./CurrentWeather";
 
 
 // Use Combo box for suggestions
@@ -83,9 +84,6 @@ const Home = ({ location, setLocationIsError, reqRefresh }) => {
 	const [currLocation, setCurrLocation] = useState(location);
 	const [weatherData, setWeatherData] = useState(null);
 
-	let day = 'current';
-	// const [day, setDay] = useState('current');
-
 	useEffect(() => {
 
 		getData(location).then(data => {
@@ -104,7 +102,7 @@ const Home = ({ location, setLocationIsError, reqRefresh }) => {
 
     return (
 
-        <div className="home">
+        <Container className="home">
 
 			<Typography
 				variant="h4"
@@ -113,40 +111,28 @@ const Home = ({ location, setLocationIsError, reqRefresh }) => {
 			>
 				<LocationOnOutlined className={ classes.icon } />
 				{ capitalize(currLocation) }
-				{/* • Today */}
 			</Typography>
+				{ weatherData && (
+
+					<div className="condition">
+						<img src={ `https://openweathermap.org/img/wn/${ weatherData.current.weather[0].icon }.png` } alt="" />
+						<span>
+							{ capitalize(weatherData.current.weather[0].description) }
+						</span>
+					</div>
+				)}
 
             { !weatherData && 'Loading...' }
 
 			{ weatherData && (
 
-				<WeatherOverview
-					weatherData={ weatherData[day] }
-					tempRange={ weatherData.daily[0].temp }
+				<CurrentWeather
+					weatherData={ weatherData.current }
+					dayOneData={ weatherData.daily[0] }
 				/>
 			)}
 
-			{/* { weatherData && (
-
-				<div>
-					<div>
-						{ weatherData.lat + ', ' + weatherData.lon }
-					</div>
-					<div>
-						{ weatherData.current.temp }
-					</div>
-					<div>
-						{ weatherData.current.rain && 'Rain: ' + weatherData.current.rain['1h'] + ' mm' }
-					</div>
-					<div>
-						{ weatherData.current.weather[0].main }
-						<br />
-						{ weatherData.current.weather[0].description }
-					</div>
-				</div>
-			)} */}
-
-        </div>
+        </Container>
     );
 }
  

@@ -71,6 +71,12 @@ const useStyles = makeStyles((theme) => ({
             },
         },
     },
+    errorBox: {
+        
+        [theme.breakpoints.down(480)]: {
+            width: '100%',
+        },
+    },
     error: {
         position: 'relative',
         marginLeft: 'auto',
@@ -79,6 +85,9 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(0, 2),
         fontSize: theme.spacing(2),
         color: theme.palette.warning.light,
+        [theme.breakpoints.down(480)]: {
+            margin: 'auto',
+        },
     },
     warningIcon: {
         left: 0,
@@ -240,10 +249,12 @@ const Appbar = ({ handleSubmit, locationIsError, refreshData }) => {
 
             { locationIsError && (
                             
-                <div className={ classes.error }>
-                    <WarningIcon className={ classes.warningIcon } />
-                    <div style={ {marginLeft: "8px"} }>
-                        Location Not Found
+                <div className={ classes.errorBox }>
+                    <div className={ classes.error }>
+                        <WarningIcon className={ classes.warningIcon } />
+                        <div style={ {marginLeft: "8px"} }>
+                            Location Not Found
+                        </div>
                     </div>
                 </div>
             )}

@@ -20,9 +20,9 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.overview .condition {
+.condition {
 	
-	margin: 0 auto calc(1.5em - 2.25vw);
+	margin: 0 auto calc(1.25em - 1.225vw);
 	width: fit-content;
 	position: relative;
 	display: flex;
@@ -30,24 +30,24 @@ body {
 	font-size: 1.25em;
 }
 
-.overview .condition img {
+.condition img {
 
 	width: 2em;
 	position: absolute;
 	left: 0;
 }
 
-.overview .condition span {
+.condition span {
 	padding: 0 2em;
 }
 
-.overview .temps {
+.details {
 
-	margin: auto;
-	max-width: 360px;
-	display: flex;
-	align-items: center;
-	justify-content: space-around;
+	margin: 0.5em 0 !important;
+	padding: 0 8px 10px;
+	background: #fff2;
+	border-radius: 0.725rem;
+	text-align: center;
 }
 
 @media only screen and (max-width: 600px) {

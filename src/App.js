@@ -10,7 +10,7 @@ import Home from "./Components/Home";
 const theme = responsiveFontSizes(createMuiTheme({
 
 	typography: {
-		// fontFamily: 'Quicksand',
+		fontFamily: 'Quicksand',
 		fontWeightLight: 100,
 		fontWeightRegular: 300,
 		fontWeightMedium: 500,

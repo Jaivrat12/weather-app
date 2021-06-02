@@ -6,8 +6,9 @@ import { makeStyles } from "@material-ui/core/styles"
 
 import LocationOnOutlined from "@material-ui/icons/LocationOnOutlined";
 
-import { capitalize } from "../Utilities/utilities";
 import CurrentWeather from "./CurrentWeather";
+import { capitalize } from "../Utilities/utilities";
+import ForecastOverview from "./ForecastOverview";
 
 
 // Use Combo box for suggestions
@@ -112,15 +113,15 @@ const Home = ({ location, setLocationIsError, reqRefresh }) => {
 				<LocationOnOutlined className={ classes.icon } />
 				{ capitalize(currLocation) }
 			</Typography>
-				{ weatherData && (
+			{ weatherData && (
 
-					<div className="condition">
-						<img src={ `https://openweathermap.org/img/wn/${ weatherData.current.weather[0].icon }.png` } alt="" />
-						<span>
-							{ capitalize(weatherData.current.weather[0].description) }
-						</span>
-					</div>
-				)}
+				<div className="condition">
+					<img src={ `https://openweathermap.org/img/wn/${ weatherData.current.weather[0].icon }.png` } alt="" />
+					<span>
+						{ capitalize(weatherData.current.weather[0].description) }
+					</span>
+				</div>
+			)}
 
             { !weatherData && 'Loading...' }
 
@@ -130,6 +131,11 @@ const Home = ({ location, setLocationIsError, reqRefresh }) => {
 					weatherData={ weatherData.current }
 					dayOneData={ weatherData.daily[0] }
 				/>
+			)}
+
+			{ weatherData && (
+
+				<ForecastOverview />
 			)}
 
         </Container>

@@ -19,20 +19,6 @@ const theme = createMuiTheme({
 
 const useStyles = makeStyles({
 
-    paper: {
-        backgroundColor: 'transparent',
-        color: 'white',
-        fontSize: '1.1em',
-        [theme.breakpoints.down('sm')]: {
-            fontSize: '1em',
-        },
-        [theme.breakpoints.down('xs')]: {
-            fontSize: '0.95em',
-        },
-    },
-    details: {
-        padding: theme.spacing(1.5, 0),
-    },
     label: {
         fontWeight: 400,
         borderBottom: '1px solid #fff3',
@@ -48,9 +34,29 @@ const useStyles = makeStyles({
             fontSize: '1em',
         },
     },
+    paper: {
+        backgroundColor: 'transparent',
+        color: 'white',
+        fontSize: '1.1em',
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '1em',
+        },
+        [theme.breakpoints.down('xs')]: {
+            fontSize: '0.95em',
+        },
+    },
+    title: {
+        fontSize: '0.825em',
+        color: '#fffb',
+        fontWeight: 700,
+    },
+    details: {
+        padding: theme.spacing(1.5, 0),
+    },
 });
 
-const CurrDetails = ({ label, details }) => {
+// Time according to search
+const CurrentDetails = ({ label, details }) => {
 
     const classes = useStyles();
 
@@ -80,7 +86,7 @@ const CurrDetails = ({ label, details }) => {
                             </Paper>
                         </Grid>
                         <Grid item>
-                            <Paper className={ classes.paper } elevation={ 0 }>
+                            <Paper className={ classes.paper + ' ' + classes.title } elevation={ 0 }>
                                 { detail.name }
                             </Paper>
                             <Paper className={ classes.paper } elevation={ 0 }>
@@ -95,4 +101,4 @@ const CurrDetails = ({ label, details }) => {
     );
 };
 
-export default CurrDetails;
+export default CurrentDetails;

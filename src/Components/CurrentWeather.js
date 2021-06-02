@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import AcUnitIcon from '@material-ui/icons/AcUnit';
 
-import CurrDetails from './CurrDetails';
+import CurrentDetails from './CurrentDetails';
 import { toTimeStr } from '../Utilities/utilities';
 
 
@@ -159,11 +159,11 @@ const CurrentWeather = ({ weatherData: data, dayOneData }) => {
         <Grid container justify="space-evenly">
 
             <Grid item xs={ 12 } sm={ 9 } md={ 5 } className="details">
-                <CurrDetails label="Astro Details" details={ astroDetails }/>
+                <CurrentDetails label="Astro Details" details={ astroDetails }/>
             </Grid>
 
             <Grid item xs={ 12 } sm={ 9 } md={ 5 } className="details">
-                <CurrDetails label="Weather Details" details={ weatherDetails }/>
+                <CurrentDetails label="Weather Details" details={ weatherDetails }/>
             </Grid>
 
         </Grid>

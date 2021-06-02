@@ -8,7 +8,7 @@ import LocationOnOutlined from "@material-ui/icons/LocationOnOutlined";
 
 import CurrentWeather from "./CurrentWeather";
 import { capitalize } from "../Utilities/utilities";
-import ForecastOverview from "./ForecastOverview";
+import ForecastPreview from "./ForecastPreview";
 
 
 // Use Combo box for suggestions
@@ -135,7 +135,22 @@ const Home = ({ location, setLocationIsError, reqRefresh }) => {
 
 			{ weatherData && (
 
-				<ForecastOverview />
+				<ForecastPreview
+					path="/hourly"
+					data={ weatherData.hourly }
+					heading="Hourly Forecast"
+					dateFormat="hour"
+				/>
+			)}
+
+			{ weatherData && (
+
+				<ForecastPreview
+					path="/daily"
+					data={ weatherData.daily }
+					heading="Daily Forecast"
+					dateFormat="day"
+				/>
 			)}
 
         </Container>

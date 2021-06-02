@@ -4,6 +4,10 @@
 	box-sizing: border-box;
 }
 
+a {
+	text-decoration: none;
+}
+
 html, body {
 	min-height:100%;
 }
@@ -48,6 +52,11 @@ body {
 	background: #fff2;
 	border-radius: 0.725rem;
 	text-align: center;
+}
+
+.preview {
+
+	margin: 1rem 0;
 }
 
 @media only screen and (max-width: 600px) {

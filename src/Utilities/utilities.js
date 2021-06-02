@@ -5,17 +5,26 @@ const capitalize = (str) => {
     ).join(' ');
 };
 
-const toTimeStr = (date, locales=[]) => {
+const toDateStr = (date, format = "hour", locales = []) => {
 
-    const options = {
+    if(format === "hour") {
 
-        hour: '2-digit',
-        minute: '2-digit' ,
-    };
-    return new Date(date * 1000).toLocaleTimeString(locales, options);
+        const options = {
+
+            hour: '2-digit',
+            minute: '2-digit',
+        };
+        return new Date(date * 1000).toLocaleTimeString(locales, options);
+    }
+
+    else {
+
+        const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        return days[new Date(date * 1000).getDay()];
+    }
 };
 
 export {
 
-    capitalize, toTimeStr
+    capitalize, toDateStr
 };

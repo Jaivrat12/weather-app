@@ -66,7 +66,7 @@ const CurrentDetails = ({ label, details }) => {
             <Typography className={ classes.label } variant="h6" gutterBottom>
                 { label }
             </Typography>
-            <Grid container justify="space-evenly">
+            <Grid container justify="center">
             {details.map(detail => (
 
                 <Grid

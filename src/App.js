@@ -57,6 +57,10 @@ function App() {
 							reqRefresh={ reqRefresh }
 						/>
 					</Route>
+					<Route path="/hourly">
+					</Route>
+					<Route path="/daily">
+					</Route>
 				</Switch>
 			</Router>				
 		</ThemeProvider>

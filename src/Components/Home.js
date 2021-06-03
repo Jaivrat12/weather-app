@@ -1,18 +1,44 @@
 import { useEffect, useState } from "react";
 
 import Container from "@material-ui/core/Container";
-import { useTheme } from '@material-ui/core/styles';
+import Typography from "@material-ui/core/Typography";
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
+import LocationOnOutlined from "@material-ui/icons/LocationOnOutlined";
+
 import CurrentWeather from "./CurrentWeather";
-import { capitalize } from "../lib/utilities";
 import ForecastPreview from "./ForecastPreview";
 
+import { capitalize } from "../lib/utilities";
 import { fetchData } from "../lib/fetchData";
 
 
-const Home = ({ location, setData, reqRefresh, setLocationIsError }) => {
+const useStyles = makeStyles((theme) => ({
 
+	title: {
+		margin: '0.4em auto 0',
+		padding: '0 0.8em',
+		position: 'relative',
+		width: 'fit-content',
+		fontSize: '2.25em',
+        [theme.breakpoints.up('sm')]: {
+			marginTop: 0,
+            fontSize: '3em',
+        },
+		fontWeight: 300,
+	},
+	locIcon: {
+		position: 'absolute',
+		height: '100%',
+		left: 0,
+		fontSize: '0.8em',
+	},
+}));
+
+const Home = ({ location, currLocation, setData, reqRefresh, setLocationIsError }) => {
+
+	const classes = useStyles();
 	const theme = useTheme();
 
 	const [weatherData, setWeatherData] = useState(null);
@@ -54,6 +80,15 @@ const Home = ({ location, setData, reqRefresh, setLocationIsError }) => {
     return (
 
         <Container className="home">
+
+			<Typography
+				variant="h4"
+				className={ classes.title }
+				gutterBottom
+			>
+				<LocationOnOutlined className={ classes.locIcon } />
+				{ capitalize(currLocation) }
+			</Typography>
 		
 			{ weatherData && (
 

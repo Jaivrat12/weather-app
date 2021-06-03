@@ -1,16 +1,12 @@
 import { useState } from "react";
 import { Switch, Route } from "react-router-dom";
 
-import Typography from "@material-ui/core/Typography";
-import { makeStyles, createMuiTheme, responsiveFontSizes, ThemeProvider } from "@material-ui/core/styles";
+import { createMuiTheme, responsiveFontSizes, ThemeProvider } from "@material-ui/core/styles";
 
-import LocationOnOutlined from "@material-ui/icons/LocationOnOutlined";
 
 import Appbar from "./Components/Appbar";
 import Home from "./Components/Home";
 import ForecastDetails from "./Components/ForecastDetails";
-
-import { capitalize } from "./lib/utilities";
 
 
 const theme = responsiveFontSizes(createMuiTheme({
@@ -24,31 +20,7 @@ const theme = responsiveFontSizes(createMuiTheme({
 	}
 }));
 
-const useStyles = makeStyles((theme) => ({
-
-	title: {
-		margin: '0.4em auto 0',
-		padding: '0 0.8em',
-		position: 'relative',
-		width: 'fit-content',
-		fontSize: '2.25em',
-        [theme.breakpoints.up('sm')]: {
-			marginTop: 0,
-            fontSize: '3em',
-        },
-		fontWeight: 300,
-	},
-	locIcon: {
-		position: 'absolute',
-		height: '100%',
-		left: 0,
-		fontSize: '0.8em',
-	},
-}));
-
 function App() {
-
-	const classes = useStyles();
 
 	const [location, setLocation] = useState('Indore');
 	const [currLocation, setCurrLocation] = useState(location);
@@ -89,16 +61,9 @@ function App() {
 				<Switch>
 
 					<Route exact path="/">
-						<Typography
-							variant="h4"
-							className={ classes.title }
-							gutterBottom
-						>
-							<LocationOnOutlined className={ classes.locIcon } />
-							{ capitalize(currLocation) }
-						</Typography>
 						<Home
-							location={ currLocation }
+							location={ location }
+							currLocation={ currLocation }
 							setData={ setData }
 							reqRefresh={ reqRefresh }
 							setLocationIsError={ setLocationIsError }

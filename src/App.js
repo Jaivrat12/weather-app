@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 
 import Typography from "@material-ui/core/Typography";
@@ -11,7 +10,6 @@ import Appbar from "./Components/Appbar";
 import Home from "./Components/Home";
 import ForecastDetails from "./Components/ForecastDetails";
 
-import { fetchData } from "./lib/fetchData";
 import { capitalize } from "./lib/utilities";
 
 
@@ -54,12 +52,18 @@ function App() {
 
 	const [location, setLocation] = useState('Indore');
 	const [currLocation, setCurrLocation] = useState(location);
-	const [weatherData, setWeatherData] = useState(null);
+	// const [weatherData, setWeatherData] = useState(null);
 
 	const [locationIsError, setLocationIsError] = useState(false);
     const [reqRefresh, setReqRefresh] = useState(null)
 
     const refreshData = () => setReqRefresh(Date());
+
+	const setData = (data) => {
+
+		setLocationIsError(false);
+		setCurrLocation(data.name);
+	};
 
 	const handleSubmit = (e) => {
 
@@ -73,22 +77,6 @@ function App() {
 		setLocation(e.target[0].value);
 		e.target[0].value = '';
 	};
-
-	useEffect(() => {
-
-		fetchData(location).then(data => {
-			
-			console.log(data);
-			if(data === 404)
-				setLocationIsError(true);
-			else if(data !== null) {
-
-				setLocationIsError(false);
-				setCurrLocation(data.name);
-				setWeatherData(data.weatherData);
-			}
-		});
-	}, [location, reqRefresh]);
 
 	return (
 
@@ -111,7 +99,9 @@ function App() {
 						</Typography>
 						<Home
 							location={ currLocation }
-							weatherData={ weatherData }
+							setData={ setData }
+							reqRefresh={ reqRefresh }
+							setLocationIsError={ setLocationIsError }
 						/>
 					</Route>
 					

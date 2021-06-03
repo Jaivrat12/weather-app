@@ -4,8 +4,8 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Button from '@material-ui/core/Button';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { Divider } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(0.5),
         padding: theme.spacing(1, 0),
         flexGrow: 1,
-        backgroundColor: '#fff3',
+        backgroundColor: '#fff2',
         borderRadius: '0.725rem',
         [theme.breakpoints.down('xs')]: {
             fontSize: '0.9em',
@@ -41,6 +41,13 @@ const useStyles = makeStyles((theme) => ({
         },
         [theme.breakpoints.down(321)]: {
             width: '45%',
+        },
+        '& hr': {
+            margin: '0.15em 0.5em',
+            backgroundColor: '#fff4',
+            [theme.breakpoints.down(420)]: {
+                margin: '0.15em 0.15em',
+            },
         },
     },
     paper: {
@@ -67,30 +74,9 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const ForecastPreview = ({ path, data, heading, dateFormat }) => {
+const ForecastPreview = ({ path, previews, heading, dateFormat }) => {
     
     const classes = useStyles();
-
-    const theme = useTheme();
-
-    const useGetCurrSize = () => {
-        
-        let end;
-        const useScreenSize = (size) => useMediaQuery(theme.breakpoints.up(size));
-
-        if(useScreenSize('xs'))
-            end = 4;
-        if(useScreenSize('sm'))
-            end = 5;
-        if(useScreenSize('md'))
-            end = 6;
-        if(useScreenSize('lg'))
-            end = 7;
-
-        return end;
-    };
-
-    const previews = data.slice(0, useGetCurrSize());
 
     return (
         
@@ -116,14 +102,14 @@ const ForecastPreview = ({ path, data, heading, dateFormat }) => {
                 <Grid item className={ classes.card } key={ preview.dt }>
                     <Paper className={ classes.paper + ' ' + classes.title } elevation={ 0 }>
                         
-                        { dateFormat === 'hour' && data[0].dt === preview.dt && 'Now' }
-                        { dateFormat === 'hour' && data[0].dt !== preview.dt && formatDate(preview.dt, dateFormat) }
+                        { dateFormat === 'hour' && previews[0].dt === preview.dt && 'Now' }
+                        { dateFormat === 'hour' && previews[0].dt !== preview.dt && formatDate(preview.dt, dateFormat) }
 
-                        { dateFormat === 'day' && data[0].dt === preview.dt && 'Today' }
-                        { dateFormat === 'day' && data[1].dt === preview.dt && 'Tomorrow' }
+                        { dateFormat === 'day' && previews[0].dt === preview.dt && 'Today' }
+                        { dateFormat === 'day' && previews[1].dt === preview.dt && 'Tomorrow' }
                         { 
                             dateFormat === 'day' &&
-                            data[0].dt !== preview.dt && data[1].dt !== preview.dt &&
+                            previews[0].dt !== preview.dt && previews[1].dt !== preview.dt &&
                             formatDate(preview.dt, dateFormat) 
                         }
 
@@ -136,12 +122,14 @@ const ForecastPreview = ({ path, data, heading, dateFormat }) => {
                     </Paper>
                     <Paper className={ classes.paper } elevation={ 0 }>
                         { !preview.temp.day && preview.temp + ' °C' }
-                        { 
-                            preview.temp.day && 
-                            Math.round(preview.temp.max) + ' °C | '
-                            +
-                            Math.round(preview.temp.min) + ' °C' 
-                        }
+                        { preview.temp.day && (
+
+                            <Grid container justify="center">
+                                {Math.round(preview.temp.max) + ' °C'}
+                                <Divider orientation="vertical" flexItem />
+                                {Math.round(preview.temp.min) + ' °C'}
+                            </Grid>
+                        )}
                     </Paper>
                 </Grid>
             ))}

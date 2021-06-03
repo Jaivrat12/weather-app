@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(0.5),
         padding: theme.spacing(1, 0),
         flexGrow: 1,
-        backgroundColor: '#fff3',
+        backgroundColor: '#fff2',
         borderRadius: '0.725rem',
         [theme.breakpoints.down('xs')]: {
             fontSize: '0.9em',

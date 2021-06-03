@@ -30,7 +30,7 @@ body {
 
 .condition {
 	
-	margin: 0 auto calc(1.25em - 1.225vw);
+	margin: 0 auto;
 	width: fit-content;
 	position: relative;
 	display: flex;

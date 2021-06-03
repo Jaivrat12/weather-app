@@ -1,12 +1,10 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import { Switch, Route, Link, useLocation } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
 import { makeStyles, createMuiTheme, responsiveFontSizes, ThemeProvider } from "@material-ui/core/styles";
 
-import HomeIcon from '@material-ui/icons/Home';
 import LocationOnOutlined from "@material-ui/icons/LocationOnOutlined";
 
 import Appbar from "./Components/Appbar";
@@ -48,24 +46,11 @@ const useStyles = makeStyles((theme) => ({
 		left: 0,
 		fontSize: '0.8em',
 	},
-	iconBtn: {
-		position: 'absolute',
-		marginLeft: '0.5rem',
-        [theme.breakpoints.down('xs')]: {
-			marginLeft: '0.2rem',
-        },
-	},
-	icon: {
-		fontSize: '2rem',
-		color: 'white',
-	},
 }));
 
 function App() {
 
 	const classes = useStyles();
-
-	const loc = useLocation();
 
 	const [location, setLocation] = useState('Indore');
 	const [currLocation, setCurrLocation] = useState(location);
@@ -113,13 +98,6 @@ function App() {
 					locationIsError={ locationIsError }
 					refreshData={ refreshData }
 				/>
-				{ loc.pathname !== '/' && (
-					<Link to="/">
-						<IconButton color="inherit" className={ classes.iconBtn }>
-							<HomeIcon className={ classes.icon } />
-						</IconButton>
-					</Link>
-				)}
 				<Switch>
 
 					<Route exact path="/">

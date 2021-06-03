@@ -162,7 +162,7 @@ const ForecastDetails = ({ cols, dateFormat }) => {
                         { dataType === 'daily' && (
 
                             <>
-                            <Divider color="inherit" orientation="vertical" flexItem />
+                            <Divider orientation="vertical" flexItem />
                             <Grid item>
                                 <Grid container className={ classes.details } justify="space-evenly" align="center">
                                 { getDetails(preview).map(detail => (

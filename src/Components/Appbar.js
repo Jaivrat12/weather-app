@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useHistory, useLocation } from "react-router";
+import { useHistory, useLocation, Link } from "react-router-dom";
 import { v4 as uuid } from 'uuid';
 
 import AppBar from "@material-ui/core/AppBar";
@@ -19,6 +19,7 @@ import { pink } from '@material-ui/core/colors';
 import MenuIcon from "@material-ui/icons/Menu";
 import RefreshIcon from "@material-ui/icons/Refresh";
 import SearchIcon from "@material-ui/icons/Search";
+import HomeIcon from '@material-ui/icons/Home';
 import WarningIcon from "@material-ui/icons/Warning";
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import CloudIcon from '@material-ui/icons/Cloud';
@@ -30,7 +31,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 const useStyles = makeStyles((theme) => ({
 
     appbar: {
-        backgroundColor: 'transparent',
+        backgroundColor: '#5151ff',
     },
     search: {
         marginLeft: 'auto',
@@ -96,6 +97,12 @@ const useStyles = makeStyles((theme) => ({
         position: 'absolute',
         pointerEvents: 'none',
     },
+	iconBtn: {
+		marginLeft: 'auto',
+	},
+	icon: {
+		color: 'white',
+	},
     dummyToolbar: theme.mixins.toolbar,
     active: {
         background: '#64b5f6',
@@ -110,7 +117,7 @@ const Appbar = ({ handleSubmit, locationIsError, refreshData }) => {
     
     const history = useHistory();
     const location = useLocation();
-    
+
     const classes = useStyles();
 
     const menuItems = [
@@ -218,9 +225,7 @@ const Appbar = ({ handleSubmit, locationIsError, refreshData }) => {
                         <>
                         <div className={ classes.search }>
                             <div className={ classes.searchField }>
-                                <form
-                                    onSubmit={ handleSubmit }
-                                >
+                                <form onSubmit={ handleSubmit }>
                                     <div className={ classes.searchIcon }>
                                         <SearchIcon />
                                     </div>
@@ -242,6 +247,13 @@ const Appbar = ({ handleSubmit, locationIsError, refreshData }) => {
                             <RefreshIcon />
                         </IconButton>
                         </>
+                    )}
+                    { location.pathname !== '/' && (
+                        <Link to="/" className={ classes.iconBtn }>
+                            <IconButton color="inherit">
+                                <HomeIcon className={ classes.icon } />
+                            </IconButton>
+                        </Link>
                     )}
                 
                 </Toolbar>

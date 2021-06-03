@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import AcUnitIcon from '@material-ui/icons/AcUnit';
 
 import CurrentDetails from './CurrentDetails';
-import { toDateStr } from '../Utilities/utilities';
+import { formatDate } from '../lib/utilities';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -108,22 +108,22 @@ const CurrentWeather = ({ weatherData: data, dayOneData }) => {
 
         {
             name: "Sunrise",
-            value: toDateStr(dayOneData['sunrise']),
+            value: formatDate(dayOneData['sunrise']),
             icon: <AcUnitIcon />,
         },
         {
             name: "Sunset",
-            value: toDateStr(dayOneData['sunset']),
+            value: formatDate(dayOneData['sunset']),
             icon: <AcUnitIcon />,
         },
         {
             name: "Moonrise",
-            value: toDateStr(dayOneData['moonrise']),
+            value: formatDate(dayOneData['moonrise']),
             icon: <AcUnitIcon />,
         },
         {
             name: "Moonset",
-            value: toDateStr(dayOneData['moonset']),
+            value: formatDate(dayOneData['moonset']),
             icon: <AcUnitIcon />,
         },
         {

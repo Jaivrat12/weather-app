@@ -214,32 +214,35 @@ const Appbar = ({ handleSubmit, locationIsError, refreshData }) => {
                     </IconButton>
                     { drawer }
 
-                    <div className={ classes.search }>
-                        <div className={ classes.searchField }>
-                            <form
-                                onSubmit={ handleSubmit }
-                            >
-                                <div className={ classes.searchIcon }>
-                                    <SearchIcon />
-                                </div>
-                                <InputBase
-                                    placeholder="Location…"
-                                    classes={{
-                                        root: classes.inputRoot,
-                                        input: classes.inputInput,
-                                    }}
-                                />
-                            </form>
+                    { location.pathname === '/' && (
+                        <>
+                        <div className={ classes.search }>
+                            <div className={ classes.searchField }>
+                                <form
+                                    onSubmit={ handleSubmit }
+                                >
+                                    <div className={ classes.searchIcon }>
+                                        <SearchIcon />
+                                    </div>
+                                    <InputBase
+                                        placeholder="Location…"
+                                        classes={{
+                                            root: classes.inputRoot,
+                                            input: classes.inputInput,
+                                        }}
+                                    />
+                                </form>
+                            </div>
                         </div>
-                    </div>
-                    <IconButton
-                        onClick={ refreshData }
-                        className={ classes.menuIcon }
-                        edge="end"
-                        color="inherit"
-                    >
-                        <RefreshIcon />
-                    </IconButton>
+                        <IconButton
+                            onClick={ refreshData }
+                            edge="end"
+                            color="inherit"
+                        >
+                            <RefreshIcon />
+                        </IconButton>
+                        </>
+                    )}
                 
                 </Toolbar>
 

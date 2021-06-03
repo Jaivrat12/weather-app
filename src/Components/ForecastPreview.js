@@ -9,7 +9,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
-import { capitalize, toDateStr } from "../Utilities/utilities";
+import { capitalize, formatDate } from "../lib/utilities";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -86,10 +86,6 @@ const ForecastPreview = ({ path, data, heading, dateFormat }) => {
             end = 6;
         if(useScreenSize('lg'))
             end = 7;
-        if(useMediaQuery(('(max-width:420px)')))
-            end = 4;
-        // if(useMediaQuery(('(max-width:320px)')))
-        //     end = 6;
 
         return end;
     };
@@ -121,14 +117,14 @@ const ForecastPreview = ({ path, data, heading, dateFormat }) => {
                     <Paper className={ classes.paper + ' ' + classes.title } elevation={ 0 }>
                         
                         { dateFormat === 'hour' && data[0].dt === preview.dt && 'Now' }
-                        { dateFormat === 'hour' && data[0].dt !== preview.dt && toDateStr(preview.dt, dateFormat) }
+                        { dateFormat === 'hour' && data[0].dt !== preview.dt && formatDate(preview.dt, dateFormat) }
 
                         { dateFormat === 'day' && data[0].dt === preview.dt && 'Today' }
                         { dateFormat === 'day' && data[1].dt === preview.dt && 'Tomorrow' }
                         { 
                             dateFormat === 'day' &&
                             data[0].dt !== preview.dt && data[1].dt !== preview.dt &&
-                            toDateStr(preview.dt, dateFormat) 
+                            formatDate(preview.dt, dateFormat) 
                         }
 
                     </Paper>

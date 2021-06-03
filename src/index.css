@@ -8,6 +8,10 @@ a {
 	text-decoration: none;
 }
 
+a:active {
+	color: white;
+}
+
 html, body {
 	min-height:100%;
 }
@@ -55,7 +59,6 @@ body {
 }
 
 .preview {
-
 	margin: 1rem 0;
 }
 

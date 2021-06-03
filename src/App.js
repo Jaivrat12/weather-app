@@ -1,12 +1,18 @@
 import { useState } from "react";
+import { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 
-import { createMuiTheme, responsiveFontSizes, ThemeProvider } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles, createMuiTheme, responsiveFontSizes, ThemeProvider } from "@material-ui/core/styles";
 
+import LocationOnOutlined from "@material-ui/icons/LocationOnOutlined";
 
 import Appbar from "./Components/Appbar";
 import Home from "./Components/Home";
 import ForecastDetails from "./Components/ForecastDetails";
+
+import { fetchData } from "./lib/fetchData";
+import { capitalize } from "./lib/utilities";
 
 
 const theme = responsiveFontSizes(createMuiTheme({
@@ -20,22 +26,51 @@ const theme = responsiveFontSizes(createMuiTheme({
 	}
 }));
 
+const useStyles = makeStyles((theme) => ({
+
+	title: {
+		margin: '0.4em auto 0',
+		padding: '0 0.8em',
+		position: 'relative',
+		width: 'fit-content',
+		fontSize: '2.25em',
+        [theme.breakpoints.up('sm')]: {
+			marginTop: 0,
+            fontSize: '3em',
+        },
+		fontWeight: 300,
+	},
+	locIcon: {
+		position: 'absolute',
+		height: '100%',
+		left: 0,
+		fontSize: '0.8em',
+	},
+	iconBtn: {
+		position: 'absolute',
+		marginLeft: '0.5rem',
+        [theme.breakpoints.down('xs')]: {
+			marginLeft: '0.2rem',
+        },
+	},
+	icon: {
+		fontSize: '2rem',
+		color: 'white',
+	},
+}));
+
 function App() {
+
+	const classes = useStyles();
 
 	const [location, setLocation] = useState('Indore');
 	const [currLocation, setCurrLocation] = useState(location);
-	// const [weatherData, setWeatherData] = useState(null);
+	const [weatherData, setWeatherData] = useState(null);
 
 	const [locationIsError, setLocationIsError] = useState(false);
     const [reqRefresh, setReqRefresh] = useState(null)
 
     const refreshData = () => setReqRefresh(Date());
-
-	const setData = (data) => {
-
-		setLocationIsError(false);
-		setCurrLocation(data.name);
-	};
 
 	const handleSubmit = (e) => {
 
@@ -50,6 +85,22 @@ function App() {
 		e.target[0].value = '';
 	};
 
+	useEffect(() => {
+
+		fetchData(location).then(data => {
+			
+			console.log(data);
+			if(data === 404)
+				setLocationIsError(true);
+			else if(data !== null) {
+
+				setLocationIsError(false);
+				setCurrLocation(data.name);
+				setWeatherData(data.weatherData);
+			}
+		});
+	}, [location, reqRefresh]);
+
 	return (
 
 		<ThemeProvider theme={ theme }>
@@ -61,17 +112,23 @@ function App() {
 				<Switch>
 
 					<Route exact path="/">
+						<Typography
+							variant="h4"
+							className={ classes.title }
+							gutterBottom
+						>
+							<LocationOnOutlined className={ classes.locIcon } />
+							{ capitalize(currLocation) }
+						</Typography>
 						<Home
-							location={ location }
-							currLocation={ currLocation }
-							setData={ setData }
-							reqRefresh={ reqRefresh }
-							setLocationIsError={ setLocationIsError }
+							location={ currLocation }
+							weatherData={ weatherData }
 						/>
 					</Route>
 					
 					<Route path="/hourly/*">
 						<ForecastDetails
+							weatherData={ weatherData && weatherData.hourly }
 							dateFormat="date-time"
 							cols={{ 
 								xs: 5, sm: 3,
@@ -82,6 +139,7 @@ function App() {
 
 					<Route path="/daily/*">
 						<ForecastDetails
+							weatherData={ weatherData && weatherData.daily }
 							dateFormat="day-date"
 							cols={{ 
 								xs: 12, sm: 10,

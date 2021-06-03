@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const ForecastDetails = ({ cols, dateFormat }) => {
+const ForecastDetails = ({ weatherData, cols, dateFormat }) => {
     
     const classes = useStyles();
 
@@ -113,15 +113,20 @@ const ForecastDetails = ({ cols, dateFormat }) => {
 
 	useEffect(() => {
 
-		fetchData(location).then(data => {
+		if(weatherData)
+            setForecastDetails(weatherData);
+        else {
+
+            fetchData(location).then(data => {
 			
-			console.log(data);
-			if(data === 404)
-                history.push('/');
-			else if(data !== null)
-				setForecastDetails(data.weatherData[dataType]);
-		});
-	}, [location, dataType, loc, history]);
+                console.log(data);
+                if(data === 404)
+                    history.push('/');
+                else if(data !== null)
+                    setForecastDetails(data.weatherData[dataType]);
+            });
+        }
+	}, [location, dataType, loc, history, weatherData]);
 
     return (
 

@@ -86,22 +86,11 @@ const CurrentWeather = ({ weatherData: data, dayOneData }) => {
             value: data['uvi'],
             icon: <AcUnitIcon />,
         },
-        // {
-        //     name: "Cloudiness",
-        //     value: data['clouds'] + '%',
-        //     icon: <AcUnitIcon />,
-        // },
-        // {
-        //     name: "Visibility",
-        //     value: data['visibility'],
-        //     icon: <AcUnitIcon />,
-        // },
         {
             name: "Wind Speed",
             value: data['wind_speed'] + ' m/s',
             icon: <AcUnitIcon />,
         },
-        // "wind_deg": 'wind_deg',
     ];
 
     const astroDetails = [

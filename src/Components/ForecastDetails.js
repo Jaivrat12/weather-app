@@ -142,7 +142,7 @@ const ForecastDetails = ({ cols, dateFormat }) => {
                     key={ preview.dt }
                 >
                     <Grid container justify="space-evenly">
-                        <Grid item xs={ 3 }>
+                        <Grid item xs={ dataType === 'daily' ? 3 : 12 }>
                             <Paper className={ classes.paper + ' ' + classes.title } elevation={ 0 }>
                                 { formatDate(preview.dt, dateFormat) }
                             </Paper>

@@ -54,6 +54,9 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down(321)]: {
             width: '100%',
         },
+        '& hr': {
+            backgroundColor: '#fff2',
+        },
     },
     paper: {
         backgroundColor: 'transparent',
@@ -159,7 +162,7 @@ const ForecastDetails = ({ cols, dateFormat }) => {
                         { dataType === 'daily' && (
 
                             <>
-                            <Divider orientation="vertical" flexItem />
+                            <Divider color="inherit" orientation="vertical" flexItem />
                             <Grid item>
                                 <Grid container className={ classes.details } justify="space-evenly" align="center">
                                 { getDetails(preview).map(detail => (

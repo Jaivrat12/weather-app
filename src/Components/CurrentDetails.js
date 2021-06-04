@@ -52,10 +52,12 @@ const useStyles = makeStyles({
     },
     details: {
         padding: theme.spacing(1.5, 0),
+        flexGrow: 1,
+        maxWidth: '100%',
     },
 });
 
-// Time according to search
+// Time according to search-place
 const CurrentDetails = ({ label, details }) => {
 
     const classes = useStyles();

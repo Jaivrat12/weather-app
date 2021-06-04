@@ -3,9 +3,14 @@ import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import { makeStyles } from '@material-ui/core/styles';
 
-import AcUnitIcon from '@material-ui/icons/AcUnit';
-
 import CurrentDetails from './CurrentDetails';
+import {
+    Sunrise, Sunset, Moonrise, Moonset,
+    NewMoon, WaxingCrescent, FirstQuarter, WaxingGibbous,
+    FullMoon, WaningGibbous, ThirdQuarter, WaningCrescent,
+    RealFeel, Pressure, Humidity, DewPoint, UVIndex, Wind,
+} from '../Assets/Icons.js';
+
 import { formatDate } from '../lib/utilities';
 
 
@@ -49,11 +54,52 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-/* 
-Moon phase: 0 and 1 are 'new moon', 0.25 is 'first quarter moon', 0.5 is 'full moon'
-and 0.75 is 'last quarter moon'. The periods in between are called 'waxing crescent',
-'waxing gibous', 'waning gibous', and 'waning crescent', respectively.
-*/
+const getMoonPhase = (phase, dataType) => {
+
+    let phaseName = 'New Moon';
+    let icon = <NewMoon />;
+
+    if(phase > 0 && phase < 0.25) {
+
+        phaseName = 'Waxing Crescent';
+        icon = <WaxingCrescent />;
+    }
+    else if(phase === 0.25) {
+
+        phaseName = 'First Quarter';
+        icon = <FirstQuarter />;
+    }
+    else if(phase > 0.25 && phase < 0.5) {
+
+        phaseName = 'Waxing Gibbous';
+        icon = <WaxingGibbous />;
+    }
+    else if(phase === 0.5) {
+
+        phaseName = 'Full Moon';
+        icon = <FullMoon />;
+    }
+    else if(phase > 0.5 && phase < 0.75) {
+
+        phaseName = 'Waning Gibbous';
+        icon = <WaningGibbous />;
+    }
+    else if(phase === 0.75) {
+
+        phaseName = 'Third Quarter';
+        icon = <ThirdQuarter />;
+    }
+    else if(phase > 0.75 && phase < 1) {
+
+        phaseName = 'Waning Crescent';
+        icon = <WaningCrescent />;
+    }
+
+    if(dataType === 'name')
+        return phaseName;
+    else if(dataType === 'icon')
+        return icon;
+};
 
 const CurrentWeather = ({ weatherData: data, dayOneData }) => {
     
@@ -64,32 +110,32 @@ const CurrentWeather = ({ weatherData: data, dayOneData }) => {
         {
             name: "Real Feel",
             value: data['feels_like'] + ' °C',
-            icon: <AcUnitIcon />,
+            icon: <RealFeel />,
         },
         {
             name: "Pressure",
             value: data['pressure'] + ' hPa',
-            icon: <AcUnitIcon />,
+            icon: <Pressure />,
         },
         {
             name: "Humidity",
             value: data['humidity'] + '%',
-            icon: <AcUnitIcon />,
+            icon: <Humidity />,
         },
         {
             name: "Dew Point",
             value: data['dew_point'] + ' °C',
-            icon: <AcUnitIcon />,
+            icon: <DewPoint />,
         },
         {
             name: "UV Index",
             value: data['uvi'],
-            icon: <AcUnitIcon />,
+            icon: <UVIndex />,
         },
         {
             name: "Wind Speed",
             value: data['wind_speed'] + ' m/s',
-            icon: <AcUnitIcon />,
+            icon: <Wind />,
         },
     ];
 
@@ -98,27 +144,27 @@ const CurrentWeather = ({ weatherData: data, dayOneData }) => {
         {
             name: "Sunrise",
             value: formatDate(dayOneData['sunrise']),
-            icon: <AcUnitIcon />,
+            icon: <Sunrise />,
         },
         {
             name: "Sunset",
             value: formatDate(dayOneData['sunset']),
-            icon: <AcUnitIcon />,
+            icon: <Sunset />,
         },
         {
             name: "Moonrise",
             value: formatDate(dayOneData['moonrise']),
-            icon: <AcUnitIcon />,
+            icon: <Moonrise />,
         },
         {
             name: "Moonset",
             value: formatDate(dayOneData['moonset']),
-            icon: <AcUnitIcon />,
+            icon: <Moonset />,
         },
         {
             name: "Moon Phase",
-            value: dayOneData['moon_phase'],
-            icon: <AcUnitIcon />,
+            value: getMoonPhase(dayOneData['moon_phase'], 'name'),
+            icon: getMoonPhase(dayOneData['moon_phase'], 'icon'),
         },
     ];
 

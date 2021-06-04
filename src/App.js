@@ -104,51 +104,51 @@ function App() {
 	return (
 
 		<ThemeProvider theme={ theme }>
-				<Appbar
-					handleSubmit={ handleSubmit }
-					locationIsError={ locationIsError }
-					refreshData={ refreshData }
-				/>
-				<Switch>
+			<Appbar
+				handleSubmit={ handleSubmit }
+				locationIsError={ locationIsError }
+				refreshData={ refreshData }
+			/>
+			<Switch>
 
-					<Route exact path="/">
-						<Typography
-							variant="h4"
-							className={ classes.title }
-							gutterBottom
-						>
-							<LocationOnOutlined className={ classes.locIcon } />
-							{ capitalize(currLocation) }
-						</Typography>
-						<Home
-							location={ currLocation }
-							weatherData={ weatherData }
-						/>
-					</Route>
-					
-					<Route path="/hourly/*">
-						<ForecastDetails
-							weatherData={ weatherData && weatherData.hourly }
-							dateFormat="date-time"
-							cols={{ 
-								xs: 5, sm: 3,
-								md: 2, lg: 2,
-							}}
-						/>
-					</Route>
+				<Route exact path="/">
+					<Typography
+						variant="h4"
+						className={ classes.title }
+						gutterBottom
+					>
+						<LocationOnOutlined className={ classes.locIcon } />
+						{ capitalize(currLocation) }
+					</Typography>
+					<Home
+						location={ currLocation }
+						weatherData={ weatherData }
+					/>
+				</Route>
+				
+				<Route path="/hourly/*">
+					<ForecastDetails
+						weatherData={ weatherData && weatherData.hourly }
+						dateFormat="date-time"
+						cols={{ 
+							xs: 5, sm: 3,
+							md: 2, lg: 2,
+						}}
+					/>
+				</Route>
 
-					<Route path="/daily/*">
-						<ForecastDetails
-							weatherData={ weatherData && weatherData.daily }
-							dateFormat="day-date"
-							cols={{ 
-								xs: 12, sm: 10,
-								md: 8, lg: 6,
-							}}
-						/>
-					</Route>
+				<Route path="/daily/*">
+					<ForecastDetails
+						weatherData={ weatherData && weatherData.daily }
+						dateFormat="day-date"
+						cols={{ 
+							xs: 12, sm: 10,
+							md: 8, lg: 6,
+						}}
+					/>
+				</Route>
 
-				</Switch>				
+			</Switch>				
 		</ThemeProvider>
 	);
 }

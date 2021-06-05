@@ -72,9 +72,27 @@ function App() {
 	const [weatherData, setWeatherData] = useState(null);
 
 	const [locationIsError, setLocationIsError] = useState(false);
-    const [reqRefresh, setReqRefresh] = useState(null)
+    // const [reqRefresh, setReqRefresh] = useState(null);
 
-    const refreshData = () => setReqRefresh(Date());
+	const handleData = (data) => {
+
+		console.log(data);
+		if(data === 404)
+			setLocationIsError(true);
+		else if(data !== null) {
+
+			setLocationIsError(false);
+			setCurrLocation(data.name);
+			setWeatherData(data.weatherData);
+		}
+	};
+
+    const refreshData = () => {
+
+		// setWeatherData(null);
+		// setReqRefresh(Date());
+		fetchData(location).then(data => handleData(data));
+	};
 
 	const handleSubmit = (e) => {
 
@@ -91,19 +109,8 @@ function App() {
 
 	useEffect(() => {
 
-		fetchData(location).then(data => {
-			
-			console.log(data);
-			if(data === 404)
-				setLocationIsError(true);
-			else if(data !== null) {
-
-				setLocationIsError(false);
-				setCurrLocation(data.name);
-				setWeatherData(data.weatherData);
-			}
-		});
-	}, [location, reqRefresh]);
+		fetchData(location).then(data => handleData(data));
+	}, [location]);
 
 	return (
 

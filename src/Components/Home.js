@@ -8,6 +8,7 @@ import CurrentWeather from "./CurrentWeather";
 import ForecastPreview from "./ForecastPreview";
 import { capitalize } from "../lib/utilities";
 
+
 const Home = ({ location, weatherData }) => {
 
 	window.scrollTo(0, 0);

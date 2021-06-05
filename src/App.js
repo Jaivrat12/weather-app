@@ -113,7 +113,7 @@ function App() {
 				locationIsError={ locationIsError }
 				refreshData={ refreshData }
 			/>
-			<AnimatePresence>
+			<AnimatePresence exitBeforeEnter>
 				<Switch location={ loc } key={ loc.key }>
 					<Route exact path="/">
 						<Typography

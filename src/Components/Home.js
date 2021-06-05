@@ -10,6 +10,8 @@ import { capitalize } from "../lib/utilities";
 
 const Home = ({ location, weatherData }) => {
 
+	window.scrollTo(0, 0);
+
 	const theme = useTheme();
 
 	const MotionContainer = motion(Container);

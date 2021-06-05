@@ -2,14 +2,17 @@ import Container from "@material-ui/core/Container";
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
-import CurrentWeather from "./CurrentWeather";
-import { capitalize } from "../lib/utilities";
-import ForecastPreview from "./ForecastPreview";
+import { motion } from "framer-motion";
 
+import CurrentWeather from "./CurrentWeather";
+import ForecastPreview from "./ForecastPreview";
+import { capitalize } from "../lib/utilities";
 
 const Home = ({ location, weatherData }) => {
 
 	const theme = useTheme();
+
+	const MotionContainer = motion(Container);
 
 	const useGetCurrSize = () => {
         
@@ -32,16 +35,32 @@ const Home = ({ location, weatherData }) => {
 
     return (
 
-        <Container className="home">
-		
+        <MotionContainer className="home"
+			exit={{
+				x: '-100vw',
+				transition: {
+					duration: 0.3,
+					// ease: 'easeInOut'
+				}
+			}}
+		>
 			{ weatherData && (
 
-				<div className="condition">
-					<img src={ `https://openweathermap.org/img/wn/${ weatherData.current.weather[0].icon }.png` } alt="" />
+				<motion.div
+					className="condition"
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+				>
+					<motion.img
+						animate={{ scale: [0, 1.25, 1] }}
+						transition={{ duration: 0.3, delay: 0.25 }}
+						src={ `https://openweathermap.org/img/wn/${ weatherData.current.weather[0].icon }.png` }
+						alt=""
+					/>
 					<span>
 						{ capitalize(weatherData.current.weather[0].description) }
 					</span>
-				</div>
+				</motion.div>
 			)}
 
             { !weatherData && 'Loading...' }
@@ -75,7 +94,7 @@ const Home = ({ location, weatherData }) => {
 				</>
 			)}
 
-        </Container>
+        </MotionContainer>
     );
 }
  

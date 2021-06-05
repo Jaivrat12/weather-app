@@ -9,6 +9,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
+import { motion } from 'framer-motion';
+
 import { capitalize, formatDate } from "../lib/utilities";
 
 
@@ -78,10 +80,25 @@ const ForecastPreview = ({ path, previews, heading, dateFormat }) => {
     
     const classes = useStyles();
 
+    const MotionGrid = motion(Grid);
+
+    let stepDelay = 0;
+    const incStepDelay = () => stepDelay += 0.1;
+
     return (
         
         <div className="preview">
-            <Grid container justify="space-between" alignItems="center">
+            <MotionGrid container justify="space-between" alignItems="center"
+                initial={{
+                    y: 50,
+                    opacity: 0
+                }}
+                animate={{
+                    y: 0,
+                    opacity: 1
+                }}
+                transition={{ duration: 0.25, delay: 0.85 }}
+            >
                 <Grid item>
                     <Typography variant="h6" className={ classes.heading }>
                         { heading }
@@ -95,11 +112,15 @@ const ForecastPreview = ({ path, previews, heading, dateFormat }) => {
                         </Button>
                     </Link>
                 </Grid>
-            </Grid>
+            </MotionGrid>
             <Grid container justify="center">
-            {previews.map(preview => (
+            {previews.map((preview, i) => (
 
-                <Grid item className={ classes.card } key={ preview.dt }>
+                <MotionGrid item className={ classes.card } key={ preview.dt }
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 0.25, delay: 0.9 + incStepDelay() }}
+                >
                     <Paper className={ classes.paper + ' ' + classes.title } elevation={ 0 }>
                         
                         { dateFormat === 'hour' && previews[0].dt === preview.dt && 'Now' }
@@ -131,7 +152,7 @@ const ForecastPreview = ({ path, previews, heading, dateFormat }) => {
                             </Grid>
                         )}
                     </Paper>
-                </Grid>
+                </MotionGrid>
             ))}
             </Grid>
         </div>

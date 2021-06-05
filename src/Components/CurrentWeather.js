@@ -12,6 +12,7 @@ import {
 } from '../Assets/Icons.js';
 
 import { formatDate } from '../lib/utilities';
+import { motion } from 'framer-motion';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -105,6 +106,8 @@ const CurrentWeather = ({ weatherData: data, dayOneData }) => {
     
     const classes = useStyles();
 
+    const MotionDivider = motion(Divider);
+
     const weatherDetails = [
 
         {
@@ -175,16 +178,38 @@ const CurrentWeather = ({ weatherData: data, dayOneData }) => {
             <Grid item xs={ 12 } sm={ 8 } md={ 5 }>
 
                 <Typography variant="h1" className={ classes.temp }>   
-                    { Math.round(data.temp) }<sup>°C</sup>
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+						transition={{ duration: 0.5, delay: 0.4 }}
+                    >
+                        { Math.round(data.temp) }<sup>°C</sup>
+                    </motion.div>
                 </Typography>
 
                 <Grid container className={ classes.tempRange }>
                     <Typography variant="h5">
-                        { Math.round(dayOneData.temp.max) } °C
+                        <motion.div
+                            initial={{ opacity: 0, x: 60 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.4, delay: 0.5 }}
+                        >
+                            { Math.round(dayOneData.temp.max) } °C
+                        </motion.div>
                     </Typography>
-                    <Divider orientation="vertical" flexItem />
+                    <MotionDivider orientation="vertical" flexItem 
+                        initial={{ opacity: 0, y: 60 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: 0.5 }}
+                    />
                     <Typography variant="h5">
-                        { Math.round(dayOneData.temp.min) } °C
+                        <motion.div
+                            initial={{ opacity: 0, x: -60 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.4, delay: 0.5 }}
+                        >
+                            { Math.round(dayOneData.temp.min) } °C
+                        </motion.div>
                     </Typography>
                 </Grid>
 
@@ -193,12 +218,38 @@ const CurrentWeather = ({ weatherData: data, dayOneData }) => {
 
         <Grid container justify="space-evenly">
 
-            <Grid item xs={ 12 } sm={ 9 } md={ 5 } className="details">
-                <CurrentDetails label="Astro Details" details={ astroDetails }/>
+            <Grid item xs={ 12 } sm={ 9 } md={ 5 }>
+                <motion.div
+                    className="details"
+                    initial={{
+                        y: -50,
+                        opacity: 0
+                    }}
+                    animate={{
+                        y: 0,
+                        opacity: 1
+                    }}
+                    transition={{ duration: 0.25, delay: 0.6 }}
+                >
+                    <CurrentDetails label="Astro Details" details={ astroDetails }/>
+                </motion.div>
             </Grid>
 
-            <Grid item xs={ 12 } sm={ 9 } md={ 5 } className="details">
-                <CurrentDetails label="Weather Details" details={ weatherDetails }/>
+            <Grid item xs={ 12 } sm={ 9 } md={ 5 }>
+                <motion.div
+                    className="details"
+                    initial={{ 
+                        y: 50, 
+                        opacity: 0
+                    }}
+                    animate={{
+                        y: 0,
+                        opacity: 1
+                    }}
+                    transition={{ duration: 0.25, delay: 0.6 }}
+                >
+                    <CurrentDetails label="Weather Details" details={ weatherDetails }/>
+                </motion.div>
             </Grid>
 
         </Grid>

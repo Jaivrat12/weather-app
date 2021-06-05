@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
 
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, createMuiTheme, responsiveFontSizes, ThemeProvider } from "@material-ui/core/styles";
 
 import LocationOnOutlined from "@material-ui/icons/LocationOnOutlined";
+
+import { AnimatePresence } from 'framer-motion';
 
 import Appbar from "./Components/Appbar";
 import Home from "./Components/Home";
@@ -63,6 +65,8 @@ function App() {
 
 	const classes = useStyles();
 
+	const loc = useLocation();
+
 	const [location, setLocation] = useState('Indore');
 	const [currLocation, setCurrLocation] = useState(location);
 	const [weatherData, setWeatherData] = useState(null);
@@ -109,46 +113,46 @@ function App() {
 				locationIsError={ locationIsError }
 				refreshData={ refreshData }
 			/>
-			<Switch>
+			<AnimatePresence>
+				<Switch location={ loc } key={ loc.key }>
+					<Route exact path="/">
+						<Typography
+							variant="h4"
+							className={ classes.title }
+							gutterBottom
+						>
+							<LocationOnOutlined className={ classes.locIcon } />
+							{ capitalize(currLocation) }
+						</Typography>
+						<Home
+							location={ currLocation }
+							weatherData={ weatherData }
+						/>
+					</Route>
+					
+					<Route path="/hourly/*">
+						<ForecastDetails
+							weatherData={ weatherData && weatherData.hourly }
+							dateFormat="date-time"
+							cols={{ 
+								xs: 5, sm: 3,
+								md: 2, lg: 2,
+							}}
+						/>
+					</Route>
 
-				<Route exact path="/">
-					<Typography
-						variant="h4"
-						className={ classes.title }
-						gutterBottom
-					>
-						<LocationOnOutlined className={ classes.locIcon } />
-						{ capitalize(currLocation) }
-					</Typography>
-					<Home
-						location={ currLocation }
-						weatherData={ weatherData }
-					/>
-				</Route>
-				
-				<Route path="/hourly/*">
-					<ForecastDetails
-						weatherData={ weatherData && weatherData.hourly }
-						dateFormat="date-time"
-						cols={{ 
-							xs: 5, sm: 3,
-							md: 2, lg: 2,
-						}}
-					/>
-				</Route>
-
-				<Route path="/daily/*">
-					<ForecastDetails
-						weatherData={ weatherData && weatherData.daily }
-						dateFormat="day-date"
-						cols={{ 
-							xs: 12, sm: 10,
-							md: 8, lg: 6,
-						}}
-					/>
-				</Route>
-
-			</Switch>				
+					<Route path="/daily/*">
+						<ForecastDetails
+							weatherData={ weatherData && weatherData.daily }
+							dateFormat="day-date"
+							cols={{ 
+								xs: 12, sm: 10,
+								md: 8, lg: 6,
+							}}
+						/>
+					</Route>
+				</Switch>
+			</AnimatePresence>
 		</ThemeProvider>
 	);
 }

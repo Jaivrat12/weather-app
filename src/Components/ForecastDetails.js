@@ -9,6 +9,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import LocationOnOutlined from "@material-ui/icons/LocationOnOutlined";
 
+import { motion } from "framer-motion";
+
 import { fetchData } from "../lib/fetchData";
 import { capitalize, formatDate } from "../lib/utilities";
 
@@ -80,6 +82,11 @@ const ForecastDetails = ({ weatherData, cols, dateFormat }) => {
     
     const classes = useStyles();
 
+    const MotionGrid = motion(Grid);
+    
+    // let stepDelay = 0;
+    // const incStepDelay = () => stepDelay += 0.01;
+
 	const loc = useLocation();
     const history = useHistory();
 
@@ -126,7 +133,7 @@ const ForecastDetails = ({ weatherData, cols, dateFormat }) => {
                     setForecastDetails(data.weatherData[dataType]);
             });
         }
-	}, [location, dataType, loc, history, weatherData]);
+	}, [location, dataType, history, weatherData]);
 
     return (
 
@@ -135,61 +142,90 @@ const ForecastDetails = ({ weatherData, cols, dateFormat }) => {
             <LocationOnOutlined className={ classes.locIcon } />
             { capitalize(location) }
         </Typography>
-        <Typography variant="h4" className={ classes.heading }>
-            { capitalize(dataType) } Forecast
-        </Typography>
-        { forecastDetails && (
+        <motion.div
+            initial={{
+				x: '100vw'
+			}}
+            animate={{
+				x: 0,
+				transition: {
+                    type: 'spring',
+					duration: 1,
+				}
+			}}
+            exit={{
+				x: '100vw',
+				transition: {
+					duration: 0.25,
+				}
+			}}
+        >
+            <Typography variant="h4" className={ classes.heading }>
+                { capitalize(dataType) } Forecast
+            </Typography>
+            { forecastDetails && (
 
-            <Grid container justify="center" className={ classes.container }>
-            { forecastDetails.map(preview => (
+                <Grid container justify="center" className={ classes.container }>
+                { forecastDetails.map(preview => (
 
-                <Grid
-                    item
-                    xs={ cols.xs } sm={ cols.sm } md={ cols.md } lg={ cols.lg }
-                    className={ classes.card }
-                    key={ preview.dt }
-                >
-                    <Grid container justify="space-evenly">
-                        <Grid item xs={ dataType === 'daily' ? 3 : 12 }>
-                            <Paper className={ classes.paper + ' ' + classes.title } elevation={ 0 }>
-                                { formatDate(preview.dt, dateFormat) }
-                            </Paper>
-                            <Paper className={ classes.paper } elevation={ 0 }>
-                                <img src={ `https://openweathermap.org/img/wn/${ preview.weather[0].icon }.png` } alt="" />
-                            </Paper>
-                            <Paper className={ classes.paper } elevation={ 0 }>
-                                { capitalize(preview.weather[0].description) }
-                            </Paper>
-                            <Paper className={ classes.paper } elevation={ 0 }>
-                                { !preview.temp.day && preview.temp + ' °C' }
-                            </Paper>
-                        </Grid>
-                        { dataType === 'daily' && (
-
-                            <>
-                            <Divider orientation="vertical" flexItem />
-                            <Grid item>
-                                <Grid container className={ classes.details } justify="space-evenly" align="center">
-                                { getDetails(preview).map(detail => (
-
-                                    <Grid item xs={ 6 } key={ detail.name }>
-                                        <Paper className={ classes.paper + ' ' + classes.title } elevation={ 0 }>
-                                            { detail.name }
-                                        </Paper>
-                                        <Paper className={ classes.paper } elevation={ 0 }>
-                                            { detail.value }
-                                        </Paper>
-                                    </Grid>
-                                ))}
-                                </Grid>
+                    <MotionGrid
+                        item
+                        xs={ cols.xs } sm={ cols.sm } md={ cols.md } lg={ cols.lg }
+                        className={ classes.card }
+                        // initial={{ scale: 0 }}
+                        // animate={{ scale: 1 }}
+                        // transition={{ duration: 0.25, delay: 0.3 + incStepDelay() }}
+                        // exit={{
+                        //     scale: 1,
+                        //     transition: {
+                        //         duration: 0.5,
+                        //         ease: 'easeInOut'
+                        //     }
+                        // }}
+                        key={ preview.dt }
+                    >
+                        <Grid container justify="space-evenly">
+                            <Grid item xs={ dataType === 'daily' ? 3 : 12 }>
+                                <Paper className={ classes.paper + ' ' + classes.title } elevation={ 0 }>
+                                    { formatDate(preview.dt, dateFormat) }
+                                </Paper>
+                                <Paper className={ classes.paper } elevation={ 0 }>
+                                    <img src={ `https://openweathermap.org/img/wn/${ preview.weather[0].icon }.png` } alt="" />
+                                </Paper>
+                                <Paper className={ classes.paper } elevation={ 0 }>
+                                    { capitalize(preview.weather[0].description) }
+                                </Paper>
+                                <Paper className={ classes.paper } elevation={ 0 }>
+                                    { !preview.temp.day && preview.temp + ' °C' }
+                                </Paper>
                             </Grid>
-                            </>
-                        )}
-                    </Grid>
+                            { dataType === 'daily' && (
+
+                                <>
+                                <Divider orientation="vertical" flexItem />
+                                <Grid item>
+                                    <Grid container className={ classes.details } justify="space-evenly" align="center">
+                                    { getDetails(preview).map(detail => (
+
+                                        <Grid item xs={ 6 } key={ detail.name }>
+                                            <Paper className={ classes.paper + ' ' + classes.title } elevation={ 0 }>
+                                                { detail.name }
+                                            </Paper>
+                                            <Paper className={ classes.paper } elevation={ 0 }>
+                                                { detail.value }
+                                            </Paper>
+                                        </Grid>
+                                    ))}
+                                    </Grid>
+                                </Grid>
+                                </>
+                            )}
+                        </Grid>
+                    </MotionGrid>
+                ))}
                 </Grid>
-            ))}
-            </Grid>
-        ) }
+            ) }
+        </motion.div>
         </>
     );
 };

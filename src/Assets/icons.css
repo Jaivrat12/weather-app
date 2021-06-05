@@ -4,9 +4,18 @@
     max-width: 36px;
 }
 
+.moon-icon {
+
+    width: 100%;
+    max-width: 40px;
+}
+
 @media only screen and (max-width: 480px) {
     
     .weather-icon {
         max-width: 26px;
+    }
+    .moon-icon {
+        max-width: 30px;
     }
 }

@@ -97,6 +97,6 @@ const Home = ({ location, weatherData }) => {
 
         </MotionContainer>
     );
-}
- 
+};
+
 export default Home;

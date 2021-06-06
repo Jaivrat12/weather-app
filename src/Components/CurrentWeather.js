@@ -3,6 +3,8 @@ import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import { makeStyles } from '@material-ui/core/styles';
 
+import { motion } from 'framer-motion';
+
 import CurrentDetails from './CurrentDetails';
 import {
     Sunrise, Sunset, Moonrise, Moonset,
@@ -12,7 +14,6 @@ import {
 } from '../Assets/Icons.js';
 
 import { formatDate } from '../lib/utilities';
-import { motion } from 'framer-motion';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -102,6 +103,27 @@ const getMoonPhase = (phase, dataType) => {
         return icon;
 };
 
+const tempVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 }
+};
+const tempRangeVariants = {
+    hidden: { opacity: 0, x: 60 },
+    visible: { opacity: 1, x: 0 }
+};
+const dividerVariants = {
+    hidden: { opacity: 0, y: 60 },
+    visible: { opacity: 1, y: 0 }
+};
+const astroDetailsVariants = {
+    hidden: { y: -50, opacity: 0 },
+    visible: { y: 0, opacity: 1 }
+};
+const weatherDetailsVariants = {
+    hidden: { y: 50, opacity: 0 },
+    visible: { y: 0, opacity: 1 }
+};
+
 const CurrentWeather = ({ weatherData: data, dayOneData }) => {
     
     const classes = useStyles();
@@ -179,8 +201,9 @@ const CurrentWeather = ({ weatherData: data, dayOneData }) => {
 
                 <Typography variant="h1" className={ classes.temp }>   
                     <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
+                        variants={ tempVariants }
+                        initial="hidden"
+                        animate="visible"
 						transition={{ duration: 0.5, delay: 0.4 }}
                     >
                         { Math.round(data.temp) }<sup>°C</sup>
@@ -190,22 +213,25 @@ const CurrentWeather = ({ weatherData: data, dayOneData }) => {
                 <Grid container className={ classes.tempRange }>
                     <Typography variant="h5">
                         <motion.div
-                            initial={{ opacity: 0, x: 60 }}
-                            animate={{ opacity: 1, x: 0 }}
+                            variants={ tempRangeVariants }
+                            initial="hidden"
+                            animate="visible"
                             transition={{ duration: 0.4, delay: 0.5 }}
                         >
                             { Math.round(dayOneData.temp.max) } °C
                         </motion.div>
                     </Typography>
-                    <MotionDivider orientation="vertical" flexItem 
-                        initial={{ opacity: 0, y: 60 }}
-                        animate={{ opacity: 1, y: 0 }}
+                    <MotionDivider orientation="vertical" flexItem
+                        variants={ dividerVariants }
+                        initial="hidden"
+                        animate="visible"
                         transition={{ duration: 0.4, delay: 0.5 }}
                     />
                     <Typography variant="h5">
                         <motion.div
+                            variants={ tempRangeVariants }
                             initial={{ opacity: 0, x: -60 }}
-                            animate={{ opacity: 1, x: 0 }}
+                            animate="visible"
                             transition={{ duration: 0.4, delay: 0.5 }}
                         >
                             { Math.round(dayOneData.temp.min) } °C
@@ -219,37 +245,19 @@ const CurrentWeather = ({ weatherData: data, dayOneData }) => {
         <Grid container justify="space-evenly">
 
             <Grid item xs={ 12 } sm={ 9 } md={ 5 }>
-                <motion.div
-                    className="details"
-                    initial={{
-                        y: -50,
-                        opacity: 0
-                    }}
-                    animate={{
-                        y: 0,
-                        opacity: 1
-                    }}
-                    transition={{ duration: 0.25, delay: 0.6 }}
-                >
-                    <CurrentDetails label="Astro Details" details={ astroDetails }/>
-                </motion.div>
+                <CurrentDetails
+                    label="Astro Details"
+                    details={ astroDetails }
+                    detailsVariants={ astroDetailsVariants }
+                />
             </Grid>
 
             <Grid item xs={ 12 } sm={ 9 } md={ 5 }>
-                <motion.div
-                    className="details"
-                    initial={{ 
-                        y: 50, 
-                        opacity: 0
-                    }}
-                    animate={{
-                        y: 0,
-                        opacity: 1
-                    }}
-                    transition={{ duration: 0.25, delay: 0.6 }}
-                >
-                    <CurrentDetails label="Weather Details" details={ weatherDetails }/>
-                </motion.div>
+                <CurrentDetails
+                    label="Weather Details"
+                    details={ weatherDetails }
+                    detailsVariants={ weatherDetailsVariants }
+                />
             </Grid>
 
         </Grid>

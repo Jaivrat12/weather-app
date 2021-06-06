@@ -1,7 +1,12 @@
+import { useEffect } from 'react';
+
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
+
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 
 const theme = createMuiTheme({
@@ -58,47 +63,66 @@ const useStyles = makeStyles({
 });
 
 // Time according to search-place
-const CurrentDetails = ({ label, details }) => {
+const CurrentDetails = ({ label, details, detailsVariants }) => {
 
     const classes = useStyles();
+
+    const controls = useAnimation();
+	const { ref, inView } = useInView({ triggerOnce: true });
+
+    useEffect(() => {
+
+		if(inView)
+			controls.start('visible');
+	}, [controls, inView]);
 
     return (
 
         <ThemeProvider theme={ theme }>
-            <Typography className={ classes.label } variant="h6" gutterBottom>
-                { label }
-            </Typography>
-            <Grid container justify="center">
-            {details.map(detail => (
+            {/* { console.log(inView) } */}
+            <motion.div
+                className="details"
+                variants={ detailsVariants }
+                initial="hidden"
+                animate={ controls }
+                transition={{ duration: 0.25, delay: 0.6 }}
+                ref={ ref }
+            >
+                <Typography className={ classes.label } variant="h6" gutterBottom>
+                    { label }
+                </Typography>
+                <Grid container justify="center">
+                {details.map(detail => (
 
-                <Grid
-                    item
-                    xs={ 4 }
-                    className={ classes.details }
-                    key={ detail.name }
-                >
                     <Grid
-                        container
-                        justify="center" alignItems="center"
-                        spacing={ 1 }
+                        item
+                        xs={ 4 }
+                        className={ classes.details }
+                        key={ detail.name }
                     >
-                        <Grid item xs={ 12 } sm={ 3 } md={ 12 } lg={ 3 }>
-                            <Paper className={ classes.paper } elevation={ 0 }>
-                                { detail.icon }
-                            </Paper>
-                        </Grid>
-                        <Grid item>
-                            <Paper className={ classes.paper + ' ' + classes.title } elevation={ 0 }>
-                                { detail.name }
-                            </Paper>
-                            <Paper className={ classes.paper } elevation={ 0 }>
-                                { detail.value }
-                            </Paper>
+                        <Grid
+                            container
+                            justify="center" alignItems="center"
+                            spacing={ 1 }
+                        >
+                            <Grid item xs={ 12 } sm={ 3 } md={ 12 } lg={ 3 }>
+                                <Paper className={ classes.paper } elevation={ 0 }>
+                                    { detail.icon }
+                                </Paper>
+                            </Grid>
+                            <Grid item>
+                                <Paper className={ classes.paper + ' ' + classes.title } elevation={ 0 }>
+                                    { detail.name }
+                                </Paper>
+                                <Paper className={ classes.paper } elevation={ 0 }>
+                                    { detail.value }
+                                </Paper>
+                            </Grid>
                         </Grid>
                     </Grid>
+                ))}
                 </Grid>
-            ))}
-            </Grid>
+            </motion.div>
         </ThemeProvider>
     );
 };

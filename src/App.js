@@ -4,7 +4,6 @@ import { Switch, Route, useLocation } from "react-router-dom";
 
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, createMuiTheme, responsiveFontSizes, ThemeProvider } from "@material-ui/core/styles";
-
 import LocationOnOutlined from "@material-ui/icons/LocationOnOutlined";
 
 import { AnimatePresence } from 'framer-motion';
@@ -64,24 +63,22 @@ const useStyles = makeStyles((theme) => ({
 function App() {
 
 	const classes = useStyles();
-
 	const loc = useLocation();
 
 	const [location, setLocation] = useState('Indore');
 	const [currLocation, setCurrLocation] = useState(location);
 	const [weatherData, setWeatherData] = useState(null);
 
-	const [locationIsError, setLocationIsError] = useState(false);
-    // const [reqRefresh, setReqRefresh] = useState(null);
+	const [isLoading, setIsLoading] = useState(false);
+    const [reqRefresh, setReqRefresh] = useState(null);
 
 	const handleData = (data) => {
 
 		console.log(data);
-		if(data === 404)
-			setLocationIsError(true);
-		else if(data !== null) {
+		setIsLoading(false);
 
-			setLocationIsError(false);
+		if(data !== null && data !== 404) {
+
 			setCurrLocation(data.name);
 			setWeatherData(data.weatherData);
 		}
@@ -89,9 +86,12 @@ function App() {
 
     const refreshData = () => {
 
-		// setWeatherData(null);
-		// setReqRefresh(Date());
-		fetchData(location).then(data => handleData(data));
+		if(!isLoading) {
+
+			setReqRefresh(Date());
+			setLocation(currLocation);
+			setWeatherData(null);
+		}
 	};
 
 	const handleSubmit = (e) => {
@@ -109,15 +109,15 @@ function App() {
 
 	useEffect(() => {
 
+		setIsLoading(true);
 		fetchData(location).then(data => handleData(data));
-	}, [location]);
+	}, [location, reqRefresh]);
 
 	return (
 
 		<ThemeProvider theme={ theme }>
 			<Appbar
 				handleSubmit={ handleSubmit }
-				locationIsError={ locationIsError }
 				refreshData={ refreshData }
 			/>
 			<AnimatePresence exitBeforeEnter>

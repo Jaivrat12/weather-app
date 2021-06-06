@@ -20,7 +20,6 @@ import MenuIcon from "@material-ui/icons/Menu";
 import RefreshIcon from "@material-ui/icons/Refresh";
 import SearchIcon from "@material-ui/icons/Search";
 import HomeIcon from '@material-ui/icons/Home';
-import WarningIcon from "@material-ui/icons/Warning";
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import CloudIcon from '@material-ui/icons/Cloud';
 import MapIcon from '@material-ui/icons/Map';
@@ -72,31 +71,6 @@ const useStyles = makeStyles((theme) => ({
             },
         },
     },
-    errorBox: {
-        
-        [theme.breakpoints.down(480)]: {
-            width: '100%',
-        },
-    },
-    error: {
-        position: 'relative',
-        marginLeft: 'auto',
-        marginRight: theme.spacing(9),
-        width: 'fit-content',
-        padding: theme.spacing(0, 2),
-        fontSize: theme.spacing(2),
-        color: theme.palette.warning.light,
-        [theme.breakpoints.down(480)]: {
-            margin: 'auto',
-        },
-    },
-    warningIcon: {
-        left: 0,
-        paddingTop: 2.5,
-        fontSize: 'inherit',
-        position: 'absolute',
-        pointerEvents: 'none',
-    },
 	iconBtn: {
 		marginLeft: 'auto',
 	},
@@ -112,8 +86,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-
-const Appbar = ({ handleSubmit, locationIsError, refreshData }) => {
+const Appbar = ({ handleSubmit, refreshData }) => {
     
     const history = useHistory();
     const location = useLocation();
@@ -261,18 +234,6 @@ const Appbar = ({ handleSubmit, locationIsError, refreshData }) => {
             </AppBar>
 
             <div className={ classes.dummyToolbar } />
-
-            { locationIsError && (
-                            
-                <div className={ classes.errorBox }>
-                    <div className={ classes.error }>
-                        <WarningIcon className={ classes.warningIcon } />
-                        <div style={ {marginLeft: "8px"} }>
-                            Location Not Found
-                        </div>
-                    </div>
-                </div>
-            )}
         </>
     );
 }

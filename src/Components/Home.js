@@ -66,8 +66,6 @@ const Home = ({ location, weatherData }) => {
 				</motion.div>
 			)}
 
-            { !weatherData && 'Loading...' }
-
 			{ weatherData && (
 
 				<>

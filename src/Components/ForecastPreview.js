@@ -74,7 +74,7 @@ const ForecastPreview = ({ path, previews, heading, dateFormat }) => {
                 transition={{ duration: 0.25, delay: 0.85 }}
                 ref={ ref }
             >
-            {/* { console.log(inView) } */}
+            { console.log(inView) }
                 <Grid item>
                     <Typography variant="h6" className={ classes.heading }>
                         { heading }

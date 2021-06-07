@@ -50,8 +50,6 @@ const ForecastPreview = ({ path, previews, heading, dateFormat }) => {
     
     const classes = useStyles();
 
-    const MotionGrid = motion(Grid);
-
     let stepDelay = 0;
     const incStepDelay = () => stepDelay += 0.1;
 
@@ -59,7 +57,6 @@ const ForecastPreview = ({ path, previews, heading, dateFormat }) => {
 	const { ref, inView } = useInView({ triggerOnce: true });
 
     useEffect(() => {
-
 		if(inView)
 			controls.start('visible');
 	}, [controls, inView]);
@@ -67,28 +64,29 @@ const ForecastPreview = ({ path, previews, heading, dateFormat }) => {
     return (
         
         <div className="preview">
-            <MotionGrid container justify="space-between" alignItems="center"
+            <motion.div
                 variants={ titleVariants }
                 initial="hidden"
-                animate="visible"
+                animate={ controls }
                 transition={{ duration: 0.25, delay: 0.85 }}
                 ref={ ref }
             >
-            { console.log(inView) }
-                <Grid item>
-                    <Typography variant="h6" className={ classes.heading }>
-                        { heading }
-                    </Typography>
+                <Grid container justify="space-between" alignItems="center">
+                    <Grid item>
+                        <Typography variant="h6" className={ classes.heading }>
+                            { heading }
+                        </Typography>
+                    </Grid>
+                    <Grid item>
+                        <Link to={ path }>
+                            <Button className={ classes.btn }>
+                                More Details
+                                <NavigateNextIcon />
+                            </Button>
+                        </Link>
+                    </Grid>
                 </Grid>
-                <Grid item>
-                    <Link to={ path }>
-                        <Button className={ classes.btn }>
-                            More Details
-                            <NavigateNextIcon />
-                        </Button>
-                    </Link>
-                </Grid>
-            </MotionGrid>
+            </motion.div>
             <Grid container justify="center">
                 { previews.map((preview) => (
 

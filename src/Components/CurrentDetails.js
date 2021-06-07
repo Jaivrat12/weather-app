@@ -79,7 +79,6 @@ const CurrentDetails = ({ label, details, detailsVariants }) => {
     return (
 
         <ThemeProvider theme={ theme }>
-            {/* { console.log(inView) } */}
             <motion.div
                 className="details"
                 variants={ detailsVariants }

@@ -51,7 +51,7 @@ const ForecastPreview = ({ path, previews, heading, dateFormat }) => {
     const classes = useStyles();
 
     let stepDelay = 0;
-    const incStepDelay = () => stepDelay += 0.1;
+    const incStepDelay = () => stepDelay += 0.05;
 
     const controls = useAnimation();
 	const { ref, inView } = useInView({ triggerOnce: true });
@@ -68,7 +68,7 @@ const ForecastPreview = ({ path, previews, heading, dateFormat }) => {
                 variants={ titleVariants }
                 initial="hidden"
                 animate={ controls }
-                transition={{ duration: 0.25, delay: 0.85 }}
+                transition={{ duration: 0.25, delay: 0.45 }}
                 ref={ ref }
             >
                 <Grid container justify="space-between" alignItems="center">
@@ -101,6 +101,6 @@ const ForecastPreview = ({ path, previews, heading, dateFormat }) => {
             </Grid>
         </div>
     );
-}
+};
  
 export default ForecastPreview;

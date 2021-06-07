@@ -36,62 +36,55 @@ const Home = ({ location, weatherData }) => {
 
     const previews = useGetCurrSize();
 
-    return (
+    return weatherData && (
 
         <MotionContainer className="home"
 			exit={{
 				x: '-100vw',
 				transition: {
 					duration: 0.3,
-					// ease: 'easeInOut'
+					ease: [1, 0.1, 0.6, 1]
 				}
 			}}
 		>
-			{ weatherData && (
-
+			<div className="condition">
+				<motion.img
+					initial={{ scale: 0 }}
+					animate={{ scale: [0, 1.25, 1] }}
+					transition={{ duration: 0.25, delay: 0.3 }}
+					src={ `https://openweathermap.org/img/wn/${ weatherData.current.weather[0].icon }.png` }
+					alt=""
+				/>
 				<motion.div
-					className="condition"
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
+					transition={{ duration: 0.2 }}
 				>
-					<motion.img
-						animate={{ scale: [0, 1.25, 1] }}
-						transition={{ duration: 0.3, delay: 0.25 }}
-						src={ `https://openweathermap.org/img/wn/${ weatherData.current.weather[0].icon }.png` }
-						alt=""
-					/>
-					<span>
-						{ capitalize(weatherData.current.weather[0].description) }
-					</span>
+					{ capitalize(weatherData.current.weather[0].description) }
 				</motion.div>
-			)}
+			</div>
 
-			{ weatherData && (
+			<CurrentWeather
+				weatherData={ weatherData.current }
+				dayOneData={ weatherData.daily[0] }
+			/>
+
+			{ previews && (
 
 				<>
-				<CurrentWeather
-					weatherData={ weatherData.current }
-					dayOneData={ weatherData.daily[0] }
+				<ForecastPreview
+					path={ `/hourly/${location}` }
+					previews={ weatherData.hourly.slice(0, previews) }
+					heading="Hourly Forecast"
+					dateFormat="hour"
 				/>
 
-				{ previews && (
-
-					<>
-					<ForecastPreview
-						path={ `/hourly/${location}` }
-						previews={ weatherData.hourly.slice(0, previews) }
-						heading="Hourly Forecast"
-						dateFormat="hour"
-					/>
-
-					<ForecastPreview
-						path={ `/daily/${location}` }
-						previews={ weatherData.daily.slice(0, previews) }
-						heading="Daily Forecast"
-						dateFormat="day"
-					/>
-					</>
-				)}
+				<ForecastPreview
+					path={ `/daily/${location}` }
+					previews={ weatherData.daily.slice(0, previews) }
+					heading="Daily Forecast"
+					dateFormat="day"
+				/>
 				</>
 			)}
 

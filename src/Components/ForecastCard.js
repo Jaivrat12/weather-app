@@ -81,7 +81,7 @@ const ForecastCard = ({ preview, previews, dateFormat, animDelay }) => {
                     variants={ cardVariants }
                     initial="hidden"
                     animate={ controls }
-                    transition={{ duration: 0.25, delay: 0.9 + animDelay }}
+                    transition={{ duration: 0.25, delay: 0.5 + animDelay }}
                     ref={ ref }
                 >
                     <Paper className={ classes.paper + ' ' + classes.title } elevation={ 0 }>
@@ -118,6 +118,6 @@ const ForecastCard = ({ preview, previews, dateFormat, animDelay }) => {
                 </motion.div>
             </Grid>
     );
-}
+};
  
 export default ForecastCard;

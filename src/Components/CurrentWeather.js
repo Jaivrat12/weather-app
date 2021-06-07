@@ -204,7 +204,7 @@ const CurrentWeather = ({ weatherData: data, dayOneData }) => {
                         variants={ tempVariants }
                         initial="hidden"
                         animate="visible"
-						transition={{ duration: 0.5, delay: 0.4 }}
+						transition={{ duration: 0.4, delay: 0.3 }}
                     >
                         { Math.round(data.temp) }<sup>°C</sup>
                     </motion.div>
@@ -216,7 +216,7 @@ const CurrentWeather = ({ weatherData: data, dayOneData }) => {
                             variants={ tempRangeVariants }
                             initial="hidden"
                             animate="visible"
-                            transition={{ duration: 0.4, delay: 0.5 }}
+                            transition={{ duration: 0.4, delay: 0.35 }}
                         >
                             { Math.round(dayOneData.temp.max) } °C
                         </motion.div>
@@ -225,14 +225,14 @@ const CurrentWeather = ({ weatherData: data, dayOneData }) => {
                         variants={ dividerVariants }
                         initial="hidden"
                         animate="visible"
-                        transition={{ duration: 0.4, delay: 0.5 }}
+                        transition={{ duration: 0.4, delay: 0.35 }}
                     />
                     <Typography variant="h5">
                         <motion.div
                             variants={ tempRangeVariants }
                             initial={{ opacity: 0, x: -60 }}
                             animate="visible"
-                            transition={{ duration: 0.4, delay: 0.5 }}
+                            transition={{ duration: 0.4, delay: 0.35 }}
                         >
                             { Math.round(dayOneData.temp.min) } °C
                         </motion.div>

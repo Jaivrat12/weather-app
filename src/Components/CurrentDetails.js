@@ -84,7 +84,7 @@ const CurrentDetails = ({ label, details, detailsVariants }) => {
                 variants={ detailsVariants }
                 initial="hidden"
                 animate={ controls }
-                transition={{ duration: 0.25, delay: 0.6 }}
+                transition={{ duration: 0.25, delay: 0.4 }}
                 ref={ ref }
             >
                 <Typography className={ classes.label } variant="h6" gutterBottom>

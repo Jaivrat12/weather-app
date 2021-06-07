@@ -21,7 +21,7 @@ html, body {
 body {
 	
 	margin: 0;
-	background: linear-gradient(#5151ff, #7878ff) no-repeat;
+	background: linear-gradient(#0055ff, #0099ff);
 	color: white;
 	font-family: 'Quicksand', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen',
 		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',

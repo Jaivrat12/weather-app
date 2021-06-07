@@ -30,7 +30,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 const useStyles = makeStyles((theme) => ({
 
     appbar: {
-        backgroundColor: '#5151ff',
+        backgroundColor: '#0055ff',
     },
     search: {
         marginLeft: 'auto',

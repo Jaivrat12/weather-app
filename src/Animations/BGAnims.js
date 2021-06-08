@@ -1,17 +1,17 @@
-// import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom';
 
-// import { Day } from './Day';
-// import { Night } from './Night';
-// import { Rain } from './Rain';
+import Day from './Day';
+import Night from './Night';
+// import Rain from './Rain';
 
-// const renderWeatherAnim = () => {
+const renderWeatherAnim = (BGAnim) => {
 
-// 	ReactDOM.render(
+	ReactDOM.render(
 
-// 		<></>,
-// 		document.getElementById('bg')
-// 	);
-// };
+		<BGAnim />,
+		document.getElementById('bg')
+	);
+};
 
 const updateWeatherBG = (weather, timezoneOffset) => {
 
@@ -29,15 +29,17 @@ const updateWeatherBG = (weather, timezoneOffset) => {
 		'cloudy': 'linear-gradient(rgb(39, 39, 39), rgb(58, 58, 58), rgb(77, 77, 77))',
 	};
 
-	let skyBG;
 	const hour = new Date(Date.now() + timezoneOffset * 1000).getUTCHours();
+	let skyBG, BGAnim;
 	if(hour >= 6 && hour < 18) {
 
 		skyBG = 'day';
+		BGAnim = Day;
 	}
 	else {
 
 		skyBG = 'night';
+		BGAnim = Night;
 	}
 
 	const background = document.querySelector('#bg');
@@ -48,6 +50,7 @@ const updateWeatherBG = (weather, timezoneOffset) => {
 			
 			background.style.background = skyBGColors[skyBG];
 			background.style.opacity = 1;
+			renderWeatherAnim(BGAnim);
 		}, 500);
 	}
 

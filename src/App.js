@@ -12,6 +12,8 @@ import Appbar from "./Components/Appbar";
 import Home from "./Components/Home";
 import ForecastDetails from "./Components/ForecastDetails";
 
+import updateWeatherBG from "./Animations/BGAnims";
+
 import { fetchData } from "./lib/fetchData";
 import { capitalize } from "./lib/utilities";
 
@@ -81,6 +83,7 @@ function App() {
 
 			setCurrLocation(data.name);
 			setWeatherData(data.weatherData);
+			updateWeatherBG(data.weatherData.weather, data.weatherData.timezone_offset);
 		}
 	};
 
@@ -90,7 +93,6 @@ function App() {
 
 			setReqRefresh(Date());
 			setLocation(currLocation);
-			setWeatherData(null);
 		}
 	};
 
@@ -105,6 +107,7 @@ function App() {
 
 		setLocation(e.target[0].value);
 		e.target[0].value = '';
+		document.querySelector('header').style.background = 'transparent';
 	};
 
 	useEffect(() => {
@@ -131,10 +134,13 @@ function App() {
 							<LocationOnOutlined className={ classes.locIcon } />
 							{ capitalize(currLocation) }
 						</Typography>
-						<Home
-							location={ currLocation }
-							weatherData={ weatherData }
-						/>
+						{ !isLoading && (
+
+							<Home
+								location={ currLocation }
+								weatherData={ weatherData }
+							/>
+						)}
 					</Route>
 					
 					<Route path="/hourly/*">

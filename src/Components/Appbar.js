@@ -86,12 +86,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Appbar = ({ handleSubmit, refreshData }) => {
+const Appbar = ({ appbarBG, handleSubmit, refreshData }) => {
     
     const history = useHistory();
     const location = useLocation();
-
-    console.log('Appbar');
 
     const classes = useStyles();
 
@@ -177,6 +175,12 @@ const Appbar = ({ handleSubmit, refreshData }) => {
             { menu }
         </SwipeableDrawer>
     );
+
+    document.addEventListener('scroll', () => {
+
+        document.querySelector('header')
+                .style.background = window.scrollY === 0 ? 'transparent' : appbarBG;
+    });
 
     return (
 

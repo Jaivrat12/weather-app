@@ -70,6 +70,7 @@ function App() {
 	const [location, setLocation] = useState('Indore');
 	const [currLocation, setCurrLocation] = useState(location);
 	const [weatherData, setWeatherData] = useState(null);
+	const [appbarBG, setAppbarBG] = useState('transparent');
 
 	const [isLoading, setIsLoading] = useState(false);
     const [reqRefresh, setReqRefresh] = useState(null);
@@ -83,7 +84,7 @@ function App() {
 
 			setCurrLocation(data.name);
 			setWeatherData(data.weatherData);
-			updateWeatherBG(data.weatherData.weather, data.weatherData.timezone_offset);
+			setAppbarBG(updateWeatherBG(data.weatherData.weather, data.weatherData.timezone_offset));
 		}
 	};
 
@@ -120,6 +121,7 @@ function App() {
 
 		<ThemeProvider theme={ theme }>
 			<Appbar
+				appbarBG={ appbarBG }
 				handleSubmit={ handleSubmit }
 				refreshData={ refreshData }
 			/>

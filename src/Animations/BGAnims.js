@@ -1,17 +1,17 @@
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 
-import { Day } from './Day';
-import { Night } from './Night';
-import { Rain } from './Rain';
+// import { Day } from './Day';
+// import { Night } from './Night';
+// import { Rain } from './Rain';
 
-const renderWeatherAnim = () => {
+// const renderWeatherAnim = () => {
 
-	ReactDOM.render(
+// 	ReactDOM.render(
 
-		<></>,
-		document.getElementById('bg')
-	);
-};
+// 		<></>,
+// 		document.getElementById('bg')
+// 	);
+// };
 
 const updateWeatherBG = (weather, timezoneOffset) => {
 
@@ -31,30 +31,27 @@ const updateWeatherBG = (weather, timezoneOffset) => {
 
 	let skyBG;
 	const hour = new Date(Date.now() + timezoneOffset * 1000).getUTCHours();
-	console.log(hour);
 	if(hour >= 6 && hour < 18) {
 
-		console.log('Day');
 		skyBG = 'day';
 	}
 	else {
 
-		console.log('Night');
 		skyBG = 'night';
 	}
 
 	const background = document.querySelector('#bg');
-	const appbar = document.querySelector('header');
-	if(background.style['background-image'] !== skyBGColors[skyBG]) {
+	if(background.style.backgroundImage !== skyBGColors[skyBG]) {
 		
 		background.style.opacity = 0;
 		setTimeout(() => {
 			
 			background.style.background = skyBGColors[skyBG];
 			background.style.opacity = 1;
-			setTimeout(() => appbar.style.background = appbarColors[skyBG], 500);
 		}, 500);
 	}
+
+	return appbarColors[skyBG];
 };
 
 export default updateWeatherBG;

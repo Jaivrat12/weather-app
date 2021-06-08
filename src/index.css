@@ -35,7 +35,7 @@ body {
 header {
 
 	background-color: transparent;
-	transition: background-color 0.5s !important;
+	transition: background-color 0.25s !important;
 }
 
 #bg {

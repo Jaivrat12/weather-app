@@ -110,6 +110,7 @@ function App() {
 
 		setLocation(e.target[0].value);
 		e.target[0].value = '';
+		e.target[0].blur();
 		document.querySelector('header').style.background = 'transparent';
 	};
 

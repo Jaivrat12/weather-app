@@ -42,7 +42,7 @@ const cloudVariants = {
     },
 };
 
-const Day = () => {
+const DayAnim = () => {
 
     const [anim, setAnim] = useState(cloudVariants.visible);
 
@@ -59,4 +59,4 @@ const Day = () => {
     );
 };
  
-export default Day;
+export default DayAnim;

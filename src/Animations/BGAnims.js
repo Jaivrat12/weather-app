@@ -1,8 +1,8 @@
 import ReactDOM from 'react-dom';
 
-import Day from './Day';
-import Night from './Night';
-// import Rain from './Rain';
+import DayAnim from './DayAnim';
+import NightAnim from './NightAnim';
+// import RainAnim from './RainAnim';
 
 const renderWeatherAnim = (BGAnim) => {
 
@@ -34,12 +34,12 @@ const updateWeatherBG = (weather, timezoneOffset) => {
 	if(hour >= 6 && hour < 18) {
 
 		skyBG = 'day';
-		BGAnim = Day;
+		BGAnim = DayAnim;
 	}
 	else {
 
 		skyBG = 'night';
-		BGAnim = Night;
+		BGAnim = NightAnim;
 	}
 
 	const background = document.querySelector('#bg');
@@ -50,9 +50,10 @@ const updateWeatherBG = (weather, timezoneOffset) => {
 			
 			background.style.background = skyBGColors[skyBG];
 			background.style.opacity = 1;
-			renderWeatherAnim(BGAnim);
 		}, 500);
 	}
+
+	renderWeatherAnim(BGAnim);
 
 	return appbarColors[skyBG];
 };

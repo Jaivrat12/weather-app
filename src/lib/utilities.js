@@ -39,7 +39,13 @@ const formatDate = (date, format = "hour", locales = []) => {
     }
 };
 
+const getRandNum = (min, max, roundOff = true) => {
+
+    const randNum = Math.random() * (max - min) + min;
+    return roundOff ? Math.round(randNum) : randNum;
+}
+
 export {
 
-    capitalize, formatDate
+    capitalize, formatDate, getRandNum
 };

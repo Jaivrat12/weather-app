@@ -38,18 +38,6 @@ header {
 	transition: background-color 0.25s !important;
 }
 
-#bg {
-	
-	/* background-image: linear-gradient(#0055ff, #0099ff);
-	background-image: linear-gradient(#000768, #460075, #55008d, #5f009e);
-	background-image: linear-gradient(#272727, #3a3a3a, #4d4d4d); */
-	position: absolute;
-	height: 100%;
-	width: 100%;
-	transition: opacity 0.5s;
-	z-index: -1;
-}
-
 .condition {
 	
 	margin: 0 auto;
@@ -95,16 +83,33 @@ header {
 	border-radius:24rem;
 }
 
-.dayAnim {
+/* BG Animations */
+#bg {
+	
+	/* background-image: linear-gradient(#0055ff, #0099ff);
+	background-image: linear-gradient(#000768, #460075, #55008d, #5f009e);
+	background-image: linear-gradient(#272727, #3a3a3a, #4d4d4d); */
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	transition: opacity 0.5s;
+	z-index: -1;
+	overflow: hidden;
+}
+
+/* Day Animations */
+.dayAnim, .nightAnim {
 
 	position: absolute;
 	width: 100%;
+}
+
+.dayAnim {
+
 	height: 40vw;
 	max-height: 250px;
 	display: flex;
 	align-items: center;
-	/* background: red; */
-	/* border: 1px solid; */
 }
 
 .dayAnim img {
@@ -112,6 +117,41 @@ header {
 	position: relative;
 	width: 90vw;
 	top: -15vw;
+}
+
+/* Night Animations */
+.nightAnim {
+	height: 100%;
+}
+
+.star, .star-body, .shooting-star-box  {
+	position: absolute;
+}
+
+.star-body {
+
+	opacity: 0.75;
+	top: 50%;
+	left: 50%;
+	width: 60%;
+	height: 60%;
+	transform: translate(-50%, -50%);
+	border-radius: 50%;
+	background: #fff;filter: drop-shadow(0 0 1px #5f94ff)
+	drop-shadow(0 0 1px #4b87ff);
+}
+
+.shooting-star-box {
+	bottom: 100%;
+}
+
+.shooting-star {
+
+	width: 2px;
+	height: 100px;
+	background: linear-gradient(45deg, #92b5ff, #5389ff, #0000ff00);
+	border-radius: 24px;
+	filter: drop-shadow(0 0 6px #699bff);
 }
 
 @media only screen and (max-width: 600px) {

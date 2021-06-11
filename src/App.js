@@ -85,7 +85,12 @@ function App() {
 
 			setCurrLocation(data.name);
 			setWeatherData(data.weatherData);
-			setAppbarBG(updateWeatherBG(data.weatherData.current.weather[0], data.weatherData.timezone_offset));
+			setAppbarBG(updateWeatherBG(
+				data.weatherData.current.weather[0],
+				data.weatherData.timezone_offset,
+				data.weatherData.current.sunrise,
+				data.weatherData.current.sunset,
+			));
 		}
 	};
 

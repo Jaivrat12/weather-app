@@ -15,7 +15,7 @@ const renderWeatherAnim = (BGAnim, isRaining) => {
 	);
 };
 
-const updateWeatherBG = (weather, timezoneOffset) => {
+const updateWeatherBG = (weather, timezoneOffset, sunrise, sunset) => {
 
 	const appbarColors = {
 
@@ -66,8 +66,9 @@ const updateWeatherBG = (weather, timezoneOffset) => {
 	}
 	else {
 
-		const hour = new Date(Date.now() + timezoneOffset * 1000).getUTCHours();
-		if(hour >= 6 && hour < 18) {
+		const hour = Date.now();
+		sunrise *= 1000; sunset *= 1000;
+		if(hour >= sunrise && hour <= sunset) {
 
 			skyBG = 'day';
 			BGAnim = DayAnim;

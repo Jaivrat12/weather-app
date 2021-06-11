@@ -45,7 +45,10 @@ const getRandNum = (min, max, roundOff = true) => {
     return roundOff ? Math.round(randNum) : randNum;
 }
 
+const strInArr = (array, string) => array.includes(string.toLowerCase());
+// Boolean(array.filter(str => str.includes(string.toLowerCase())).length)
+
 export {
 
-    capitalize, formatDate, getRandNum
+    capitalize, formatDate, getRandNum, strInArr
 };

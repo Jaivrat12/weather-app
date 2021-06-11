@@ -88,7 +88,8 @@ header {
 	
 	/* background-image: linear-gradient(#0055ff, #0099ff);
 	background-image: linear-gradient(#000768, #460075, #55008d, #5f009e);
-	background-image: linear-gradient(#272727, #3a3a3a, #4d4d4d); */
+	background-image: linear-gradient(#111a2b, #1a212e, #30333d);
+	background-image: linear-gradient(rgb(28, 37, 54), rgb(57, 69, 90), rgb(83, 92, 110)); */
 	position: absolute;
 	height: 100%;
 	width: 100%;
@@ -104,7 +105,7 @@ header {
 	width: 100%;
 }
 
-.dayAnim {
+.dayAnim, .dark-clouds {
 
 	height: 40vw;
 	max-height: 250px;
@@ -112,7 +113,7 @@ header {
 	align-items: center;
 }
 
-.dayAnim img {
+.dayAnim img, .dark-clouds img {
 
 	position: relative;
 	width: 90vw;
@@ -154,6 +155,33 @@ header {
 	filter: drop-shadow(0 0 6px #699bff);
 }
 
+/* Rainy/Cloudy Animations */
+.dark-clouds img {
+
+	position: absolute;
+	width: 100vw;
+	top: -20vw;
+	filter: invert(0.3)
+			brightness(0.5);
+}
+
+.rain {
+
+	position: fixed;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: -1;
+}
+
+.droplet {
+
+	position: absolute;
+	width: 2px;
+	height: 25px;
+	background: linear-gradient(45deg, #ffffff, #dee8ff, #0000ff00);
+}
+
 @media only screen and (max-width: 600px) {
 	
 	.overview .temps {
@@ -165,5 +193,8 @@ header {
 
 		width: 95vw;
 		top: -18vw;
+	}
+	.dark-clouds img {
+		top: -11vw;
 	}
 }

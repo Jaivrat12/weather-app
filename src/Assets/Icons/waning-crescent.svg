@@ -1,8 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-labelledby="title"
-aria-describedby="desc" role="img" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <title>Waxing Gibbous Moon</title>
-  <desc>A solid styled icon from Orion Icon Library.</desc>
-  <path data-name="layer1"
-  d="M32 10a22 22 0 1 0 22 22 22 22 0 0 0-22-22zm5 39.3a18 18 0 0 1 0-34.6 18 18 0 0 1 0 34.6z"
-  fill="#ffffff"></path>
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <path data-name="layer1" d="M 32 0 C 7.366 0 -8.03 26.667 4.287 48 C 16.604 69.333 47.396 69.333 59.713 48 C 62.521 43.135 64 37.617 64 32 C 64 14.327 49.673 0 32 0 Z M 39.273 57.164 C 19.902 51.598 13.82 27.149 28.326 13.156 C 31.404 10.187 35.162 8.017 39.273 6.836 C 58.644 12.402 64.725 36.851 50.219 50.844 C 47.141 53.813 43.383 55.983 39.273 57.164 Z" fill="#ffffff"/>
 </svg>

@@ -1,8 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-labelledby="title"
-aria-describedby="desc" role="img" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <title>Third Quarter Moon</title>
-  <desc>A solid styled icon from Orion Icon Library.</desc>
-  <path data-name="layer1"
-  d="M32 10a22 22 0 1 0 22 22 22 22 0 0 0-22-22zM14 32a18 18 0 0 1 18-18v36a18 18 0 0 1-18-18z"
-  fill="#ffffff"></path>
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <path data-name="layer1" d="M 32.024 0 C 7.408 0 -7.975 26.666 4.331 48 C 16.639 69.333 47.409 69.333 59.717 48 C 62.522 43.136 64 37.617 64 32 C 64 14.327 49.683 0 32.024 0 Z M 5.862 32 C 5.862 17.54 17.575 5.818 32.024 5.818 L 32.024 58.181 C 17.575 58.181 5.862 46.459 5.862 32 Z" fill="#ffffff"/>
 </svg>

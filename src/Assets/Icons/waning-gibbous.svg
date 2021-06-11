@@ -1,8 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-labelledby="title"
-aria-describedby="desc" role="img" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <title>Waxing Crescent Moon</title>
-  <desc>A solid styled icon from Orion Icon Library.</desc>
-  <path data-name="layer1"
-  d="M32 10a22 22 0 1 0 22 22 22 22 0 0 0-22-22zm0 40a17.9 17.9 0 0 1-5-.7 18 18 0 0 0 0-34.6A18 18 0 1 1 32 50z"
-  fill="#ffffff"></path>
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <path data-name="layer1" d="M 32 0 C 7.366 0 -8.03 26.667 4.287 48 C 16.604 69.333 47.396 69.333 59.713 48 C 62.521 43.135 64 37.617 64 32 C 64 14.327 49.673 0 32 0 Z M 32 58.182 C 29.54 58.188 27.091 57.845 24.727 57.164 C 44.098 51.598 50.18 27.149 35.674 13.156 C 32.596 10.187 28.838 8.017 24.727 6.836 C 44.098 1.27 62.23 18.762 57.365 38.32 C 54.466 49.975 44.01 58.162 32 58.182 Z" fill="#ffffff"/>
 </svg>

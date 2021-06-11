@@ -63,7 +63,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // App dev history
-// Resize Moon Phase SVGs
 function App() {
 
 	const classes = useStyles();

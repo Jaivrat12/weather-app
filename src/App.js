@@ -63,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // App dev history
+// Try removing fetch from forecast details
 function App() {
 
 	const classes = useStyles();
@@ -160,6 +161,7 @@ function App() {
 								xs: 5, sm: 3,
 								md: 2, lg: 2,
 							}}
+							timezone={ weatherData && weatherData.timezone_offset }
 						/>
 					</Route>
 
@@ -171,6 +173,7 @@ function App() {
 								xs: 12, sm: 10,
 								md: 8, lg: 6,
 							}}
+							timezone={ weatherData && weatherData.timezone_offset }
 						/>
 					</Route>
 				</Switch>

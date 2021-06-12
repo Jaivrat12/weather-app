@@ -61,7 +61,7 @@ const cardVariants = {
     visible: { scale: 1 }
 }
 
-const ForecastCard = ({ preview, previews, dateFormat, animDelay }) => {
+const ForecastCard = ({ preview, previews, dateFormat, animDelay, timezone }) => {
 
     const classes = useStyles();
 
@@ -87,14 +87,14 @@ const ForecastCard = ({ preview, previews, dateFormat, animDelay }) => {
                     <Paper className={ classes.paper + ' ' + classes.title } elevation={ 0 }>
                         
                         { dateFormat === 'hour' && previews[0].dt === preview.dt && 'Now' }
-                        { dateFormat === 'hour' && previews[0].dt !== preview.dt && formatDate(preview.dt, dateFormat) }
+                        { dateFormat === 'hour' && previews[0].dt !== preview.dt && formatDate(preview.dt, dateFormat, timezone) }
 
                         { dateFormat === 'day' && previews[0].dt === preview.dt && 'Today' }
                         { dateFormat === 'day' && previews[1].dt === preview.dt && 'Tomorrow' }
                         { 
                             dateFormat === 'day' &&
                             previews[0].dt !== preview.dt && previews[1].dt !== preview.dt &&
-                            formatDate(preview.dt, dateFormat) 
+                            formatDate(preview.dt, dateFormat, timezone) 
                         }
 
                     </Paper>

@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const ForecastDetails = ({ weatherData, cols, dateFormat }) => {
+const ForecastDetails = ({ weatherData, cols, dateFormat, timezone }) => {
     
     const classes = useStyles();
 
@@ -101,11 +101,11 @@ const ForecastDetails = ({ weatherData, cols, dateFormat }) => {
 
             {
                 name: 'Sunrise',
-                value: formatDate(data.sunrise),
+                value: formatDate(data.sunrise, 'hour', timezone),
             },
             {
                 name: 'Sunset',
-                value: formatDate(data.sunset),
+                value: formatDate(data.sunset, 'hour', timezone),
             },
             {
                 name: 'Max',
@@ -187,7 +187,7 @@ const ForecastDetails = ({ weatherData, cols, dateFormat }) => {
                         <Grid container justify="space-evenly">
                             <Grid item xs={ dataType === 'daily' ? 3 : 12 }>
                                 <Paper className={ classes.paper + ' ' + classes.title } elevation={ 0 }>
-                                    { formatDate(preview.dt, dateFormat) }
+                                    { formatDate(preview.dt, dateFormat, timezone) }
                                 </Paper>
                                 <Paper className={ classes.paper } elevation={ 0 }>
                                     <img src={ `https://openweathermap.org/img/wn/${ preview.weather[0].icon }.png` } alt="" />

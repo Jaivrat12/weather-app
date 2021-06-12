@@ -124,7 +124,7 @@ const weatherDetailsVariants = {
     visible: { y: 0, opacity: 1 }
 };
 
-const CurrentWeather = ({ weatherData: data, dayOneData }) => {
+const CurrentWeather = ({ weatherData: data, dayOneData, timezone }) => {
     
     const classes = useStyles();
 
@@ -159,7 +159,7 @@ const CurrentWeather = ({ weatherData: data, dayOneData }) => {
         },
         {
             name: "Wind Speed",
-            value: data['wind_speed'] + ' m/s',
+            value: (data['wind_speed'] * 18 / 5).toFixed(1) + ' km/h',
             icon: <Wind />,
         },
     ];
@@ -168,22 +168,22 @@ const CurrentWeather = ({ weatherData: data, dayOneData }) => {
 
         {
             name: "Sunrise",
-            value: formatDate(dayOneData['sunrise']),
+            value: formatDate(dayOneData['sunrise'], 'hour', timezone),
             icon: <Sunrise />,
         },
         {
             name: "Sunset",
-            value: formatDate(dayOneData['sunset']),
+            value: formatDate(dayOneData['sunset'], 'hour', timezone),
             icon: <Sunset />,
         },
         {
             name: "Moonrise",
-            value: formatDate(dayOneData['moonrise']),
+            value: formatDate(dayOneData['moonrise'], 'hour', timezone),
             icon: <Moonrise />,
         },
         {
             name: "Moonset",
-            value: formatDate(dayOneData['moonset']),
+            value: formatDate(dayOneData['moonset'], 'hour', timezone),
             icon: <Moonset />,
         },
         {

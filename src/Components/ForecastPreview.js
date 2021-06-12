@@ -46,7 +46,7 @@ const titleVariants = {
     visible: { y: 0, opacity: 1 }
 };
 
-const ForecastPreview = ({ path, previews, heading, dateFormat }) => {
+const ForecastPreview = ({ path, previews, heading, dateFormat, timezone }) => {
     
     const classes = useStyles();
 
@@ -96,6 +96,7 @@ const ForecastPreview = ({ path, previews, heading, dateFormat }) => {
                         dateFormat={ dateFormat }
                         animDelay={ incStepDelay() }
                         key={ preview.dt }
+					    timezone={ timezone }
                     />
                 ))}
             </Grid>

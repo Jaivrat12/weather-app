@@ -67,6 +67,7 @@ const Home = ({ location, weatherData }) => {
 			<CurrentWeather
 				weatherData={ weatherData.current }
 				dayOneData={ weatherData.daily[0] }
+				timezone={ weatherData.timezone_offset }
 			/>
 
 			{ previews && (
@@ -77,6 +78,7 @@ const Home = ({ location, weatherData }) => {
 					previews={ weatherData.hourly.slice(0, previews) }
 					heading="Hourly Forecast"
 					dateFormat="hour"
+					timezone={ weatherData.timezone_offset }
 				/>
 
 				<ForecastPreview
@@ -84,6 +86,7 @@ const Home = ({ location, weatherData }) => {
 					previews={ weatherData.daily.slice(0, previews) }
 					heading="Daily Forecast"
 					dateFormat="day"
+					timezone={ weatherData.timezone_offset }
 				/>
 				</>
 			)}

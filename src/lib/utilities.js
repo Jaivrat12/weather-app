@@ -1,3 +1,5 @@
+import moment from "moment-timezone";
+
 const capitalize = (str) => {
 
     return str.split(' ').map(word =>
@@ -5,37 +7,21 @@ const capitalize = (str) => {
     ).join(' ');
 };
 
-const formatDate = (date, format = "hour", locales = []) => {
+const formatDate = (date, format, timezone) => {
 
-    let newDate = new Date(date * 1000);
-    const options = {
+    const newDate = moment.utc((date + timezone) * 1000);
 
-        hour: '2-digit',
-        minute: '2-digit',
-    };
-    const getDateMonth = () => newDate.toDateString().split(' ').slice(1, 3).join(' ');
-
-    if(format === "hour") {
-
-        return newDate.toLocaleTimeString(locales, options);
+    if(format === 'hour') {
+        return newDate.format("hh:mm A");
     }
-
-    else if(format === "day") {
-
-        const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-        return days[newDate.getDay()];
+    else if(format === 'day') {
+        return newDate.format('dddd');
     }
-
-    else if(format === "date-time") {
-
-        const time =  newDate.toLocaleTimeString(locales, options) + ', ';
-        return time + getDateMonth();
+    else if(format === 'date-time') {
+        return newDate.format('hh:mm A, MMM DD');
     }
-
-    else if(format === "day-date") {
-
-        const day = newDate.toDateString().split(' ').slice(0, 1) + ', ';
-        return day + getDateMonth();
+    else if(format === 'day-date') {
+        return newDate.format('ddd, MMM DD');
     }
 };
 
@@ -46,7 +32,6 @@ const getRandNum = (min, max, roundOff = true) => {
 }
 
 const strInArr = (array, string) => array.includes(string.toLowerCase());
-// Boolean(array.filter(str => str.includes(string.toLowerCase())).length)
 
 export {
 

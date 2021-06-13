@@ -11,9 +11,9 @@ import { AnimatePresence } from 'framer-motion';
 import Appbar from "./Components/Appbar";
 import Home from "./Components/Home";
 import ForecastDetails from "./Components/ForecastDetails";
+import WeatherBGs, { setFakeBG } from "./Components/WeatherBGs";
 
 import updateWeatherBG from "./Animations/BGAnims";
-
 import { fetchData } from "./lib/fetchData";
 import { capitalize } from "./lib/utilities";
 
@@ -64,7 +64,10 @@ const useStyles = makeStyles((theme) => ({
 
 // App dev history
 // Try removing fetch from forecast details
+// Move handleSubmit to Appbar and use setLocation there
 function App() {
+
+	setFakeBG(0);
 
 	const classes = useStyles();
 	const loc = useLocation();
@@ -72,10 +75,11 @@ function App() {
 	const [location, setLocation] = useState('Indore');
 	const [currLocation, setCurrLocation] = useState(location);
 	const [weatherData, setWeatherData] = useState(null);
-	const [appbarBG, setAppbarBG] = useState('transparent');
 
 	const [isLoading, setIsLoading] = useState(false);
     const [reqRefresh, setReqRefresh] = useState(null);
+
+	const [appbarBG, setAppbarBG] = useState('transparent');
 
 	const handleData = (data) => {
 
@@ -86,9 +90,9 @@ function App() {
 
 			setCurrLocation(data.name);
 			setWeatherData(data.weatherData);
+
 			setAppbarBG(updateWeatherBG(
 				data.weatherData.current.weather[0],
-				data.weatherData.timezone_offset,
 				data.weatherData.current.sunrise,
 				data.weatherData.current.sunset,
 			));
@@ -135,6 +139,7 @@ function App() {
 			/>
 			<AnimatePresence exitBeforeEnter>
 				<Switch location={ loc } key={ loc.key }>
+
 					<Route exact path="/">
 						<Typography
 							variant="h4"
@@ -176,6 +181,11 @@ function App() {
 							timezone={ weatherData && weatherData.timezone_offset }
 						/>
 					</Route>
+
+					<Route path="/weather-backgrounds">
+						<WeatherBGs />
+					</Route>
+
 				</Switch>
 			</AnimatePresence>
 		</ThemeProvider>

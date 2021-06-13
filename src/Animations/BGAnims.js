@@ -6,29 +6,55 @@ import RainAnim from './RainAnim';
 
 import { strInArr } from '../lib/utilities';
 
-const renderWeatherAnim = (BGAnim, isRaining) => {
 
-	ReactDOM.render(
+const appbarColors = {
 
-		<BGAnim isRaining={ isRaining } />,
-		document.getElementById('bg')
-	);
+	'day': 'rgb(0, 85, 255)',
+	'night': 'rgb(0, 7, 104)',
+	'cloudy': 'rgb(28, 37, 54)',
 };
 
-const updateWeatherBG = (weather, timezoneOffset, sunrise, sunset) => {
+const skyBGColors = {
 
-	const appbarColors = {
+	'none': 'none',
+	'day': 'linear-gradient(rgb(0, 85, 255), rgb(0, 153, 255))',
+	'night': 'linear-gradient(rgb(0, 7, 104), rgb(70, 0, 117), rgb(85, 0, 141), rgb(95, 0, 158))',
+	'cloudy': 'linear-gradient(rgb(28, 37, 54), rgb(57, 69, 90), rgb(83, 92, 110))',
+};
 
-		'day': 'rgb(0, 85, 255)',
-		'night': 'rgb(0, 7, 104)',
-		'cloudy': 'rgb(28, 37, 54)',
-	};
-	const skyBGColors = {
+const updateBG = (skyBG, BGAnim, isRaining, target = '#bg') => {
 
-		'day': 'linear-gradient(rgb(0, 85, 255), rgb(0, 153, 255))',
-		'night': 'linear-gradient(rgb(0, 7, 104), rgb(70, 0, 117), rgb(85, 0, 141), rgb(95, 0, 158))',
-		'cloudy': 'linear-gradient(rgb(28, 37, 54), rgb(57, 69, 90), rgb(83, 92, 110))',
-	};
+	const background = document.querySelector(target);
+
+	if(background.style.backgroundImage !== skyBGColors[skyBG]) {
+		
+		background.style.opacity = 0;
+		setTimeout(() => {
+			
+			background.style.background = skyBGColors[skyBG];
+			background.style.opacity = 1;
+		}, 500);
+	}
+
+	if(BGAnim) {
+
+		ReactDOM.render(
+
+			<BGAnim isRaining={ isRaining } />,
+			background
+		);
+	}
+	else {
+
+		ReactDOM.render(
+
+			<div></div>,
+			background
+		);
+	}
+};
+
+const updateWeatherBG = (weather, sunrise, sunset) => {
 
 	const clearConditions = [
 		'clouds', 'clear', 'clear sky',
@@ -80,20 +106,11 @@ const updateWeatherBG = (weather, timezoneOffset, sunrise, sunset) => {
 		}
 	}
 
-	const background = document.querySelector('#bg');
-	if(background.style.backgroundImage !== skyBGColors[skyBG]) {
-		
-		background.style.opacity = 0;
-		setTimeout(() => {
-			
-			background.style.background = skyBGColors[skyBG];
-			background.style.opacity = 1;
-		}, 500);
-	}
-
-	renderWeatherAnim(BGAnim, isRaining);
+	updateBG(skyBG, BGAnim, isRaining);
 
 	return appbarColors[skyBG];
 };
 
 export default updateWeatherBG;
+
+export { updateBG };

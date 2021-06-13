@@ -23,8 +23,8 @@ import HomeIcon from '@material-ui/icons/Home';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import CloudIcon from '@material-ui/icons/Cloud';
 import MapIcon from '@material-ui/icons/Map';
+import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
 import InfoIcon from '@material-ui/icons/Info';
-import SettingsIcon from '@material-ui/icons/Settings';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -109,9 +109,9 @@ const Appbar = ({ appbarBG, handleSubmit, refreshData }) => {
         ],
         [
             {
-                text: 'Test this App',
-                icon: <SettingsIcon color="secondary" />,
-                path: '/test-app'
+                text: 'Weather BGs',
+                icon: <PhotoLibraryIcon color="secondary" />,
+                path: '/weather-backgrounds'
             },
             {
                 text: 'About',

@@ -12,7 +12,7 @@ a:active {
 	color: white;
 }
 
-html, body {
+html, body, #root {
 
 	width: 100%;
 	min-height:100vh;
@@ -30,6 +30,12 @@ body {
 		sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+
+	display: flex;
+	flex-direction: column;
 }
 
 header {
@@ -84,18 +90,22 @@ header {
 }
 
 /* BG Animations */
-#bg {
-	
-	/* background-image: linear-gradient(#0055ff, #0099ff);
-	background-image: linear-gradient(#000768, #460075, #55008d, #5f009e);
-	background-image: linear-gradient(#111a2b, #1a212e, #30333d);
-	background-image: linear-gradient(rgb(28, 37, 54), rgb(57, 69, 90), rgb(83, 92, 110)); */
+#bg, #view-bg, #fake-bg {
+
 	position: absolute;
 	height: 100%;
 	width: 100%;
 	transition: opacity 0.5s;
 	z-index: -1;
 	overflow: hidden;
+}
+
+#view-bg, #fake-bg {
+	top: 0;
+}
+
+#fake-bg {
+	background: #141414;
 }
 
 /* Day Animations */
@@ -161,8 +171,7 @@ header {
 	position: absolute;
 	width: 100vw;
 	top: -20vw;
-	filter: invert(0.3)
-			brightness(0.5);
+	filter: invert(0.3) brightness(0.5);
 }
 
 .rain {

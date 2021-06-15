@@ -6,8 +6,7 @@ const sidebarVariants = {
         clipPath: `circle(${ height * 2 + 200 }px at 0px 0px)`,
         transition: {
             type: "spring",
-            stiffness: 20,
-            restDelta: 2
+            stiffness: 50
         }
     }),
     closed: {

@@ -38,6 +38,7 @@ body {
 	flex-direction: column;
 }
 
+/* App */
 header {
 
 	background-color: transparent;
@@ -78,6 +79,7 @@ header {
 	margin: 1rem 0;
 }
 
+/* Loader */
 .loader-content {
 
 	position: fixed;
@@ -87,6 +89,45 @@ header {
 	align-items: center;
 	padding: 5px 10px;
 	border-radius:24rem;
+}
+
+/* Menubar */
+nav, .backdrop {
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100vh;
+}
+
+nav {
+
+	min-width: 15rem;
+	max-width: 100vw;
+	background: #202020;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.backdrop {
+
+	width: 100vw;
+	background: #0008;
+}
+
+.menubar-icon {
+	z-index: 1;
+}
+
+nav ul {
+	padding-top: 5rem;
+}
+
+nav li {
+
+	list-style: none;
+	display: flex;
+	align-items: center;
 }
 
 /* BG Animations */

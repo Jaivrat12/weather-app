@@ -18,7 +18,7 @@ export const fetchData = async (location) => {
 	renderLoader();
 
 	let endpoint = 'https://api.openweathermap.org/geo/1.0/direct?q=';
-	const appID = '&appid=cad8852b13cf2ae06dc0303a9c81ac0c';
+	const appID = '&appid=' + process.env.APP_ID;
 
 	let url = endpoint + location + appID + '&limit=5';
 

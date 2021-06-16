@@ -12,6 +12,7 @@ import Appbar from "./Components/Appbar";
 import Home from "./Components/Home";
 import ForecastDetails from "./Components/ForecastDetails";
 import WeatherBGs, { setFakeBG } from "./Components/WeatherBGs";
+import About from "./Components/About";
 
 import updateWeatherBG from "./Animations/BGAnims";
 import { fetchData } from "./lib/fetchData";
@@ -184,6 +185,10 @@ function App() {
 
 					<Route path="/weather-backgrounds">
 						<WeatherBGs />
+					</Route>
+
+					<Route path="/about">
+						<About />
 					</Route>
 
 				</Switch>

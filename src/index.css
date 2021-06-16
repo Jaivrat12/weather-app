@@ -12,6 +12,10 @@ a:active {
 	color: white;
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 html, body, #root {
 
 	width: 100%;
@@ -231,6 +235,43 @@ nav li {
 	width: 2px;
 	height: 25px;
 	background: linear-gradient(45deg, #ffffff, #dee8ff, #0000ff00);
+}
+
+/* About */
+.about .feature-box {
+
+	margin: 1rem 0 0.5rem;
+	padding: 1rem;
+	padding-top: 0.5rem;
+	border-radius: 1.5rem;
+	background: #fff2;
+	color: #ffffffdf;
+}
+
+.about li {
+
+	list-style-position: inside;
+	list-style-type: none;
+}
+
+.about .feature-box li {
+
+	margin: 0.5rem 0;
+	padding-left: 3rem;
+	list-style-type: disc;
+	font-weight: 400;
+	color: #ffffffc0;
+	text-indent: -1.5rem;
+}
+
+.about a {
+
+	color: #00ff95;
+	font-weight: 500;
+}
+
+.about a:hover {
+	text-decoration: underline;
 }
 
 @media only screen and (max-width: 600px) {

@@ -108,10 +108,20 @@ const WeatherBGs = () => {
     return (
 
         <motion.div className={ classes.container }
-            initial={{ scale: 0 }}
-            animate={{ scale: [0, 1.1, 1] }}
-            transition={{ duration: 0.5 }}
-            exit={{ scale: 0 }}
+            initial={{ x: '100vw' }}
+            animate={{
+                x: 0,
+                transition: {
+                    type: 'spring',
+                    duration: 1,
+                }
+            }}
+            exit={{
+                x: '100vw',
+                transition: {
+                    duration: 0.25,
+                }
+            }}
         >
             <Typography variant="h3" className={ classes.heading }>
                 Weather Backgrounds

@@ -15,7 +15,7 @@ const Loader = ({ status }) => {
 
     const [text, setText] = useState('Loading Data');
     const [Icon, setIcon] = useState(LoopIcon);
-    const [BGColor, setBGColor] = useState('#a6a6ff');
+    const [BGColor, setBGColor] = useState('#fff3');
 
     useEffect(() => {
 
@@ -24,7 +24,7 @@ const Loader = ({ status }) => {
             setIsVisible(true);
             setText('Loading Data');
             setIcon(LoopIcon);
-            setBGColor('#a6a6ff');
+            setBGColor('#fff3');
         }
         else if(isVisible) {
 
@@ -86,6 +86,6 @@ const Loader = ({ status }) => {
             )}
         </AnimatePresence>
     );
-}
+};
  
 export default Loader;

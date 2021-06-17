@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState,useEffect } from "react";
 import { Switch, Route, useLocation } from "react-router-dom";
 
 import Typography from "@material-ui/core/Typography";
@@ -63,9 +62,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-// App dev history
 // Try removing fetch from forecast details
-// Move handleSubmit to Appbar and use setLocation there
 function App() {
 
 	setFakeBG(0);
@@ -109,21 +106,6 @@ function App() {
 		}
 	};
 
-	const handleSubmit = (e) => {
-
-		e.preventDefault();
-
-		e.target[0].value = e.target[0].value.trim();
-
-		if(e.target[0].value === '')
-			return;
-
-		setLocation(e.target[0].value);
-		e.target[0].value = '';
-		e.target[0].blur();
-		document.querySelector('header').style.background = 'transparent';
-	};
-
 	useEffect(() => {
 
 		setIsLoading(true);
@@ -135,7 +117,7 @@ function App() {
 		<ThemeProvider theme={ theme }>
 			<Appbar
 				appbarBG={ appbarBG }
-				handleSubmit={ handleSubmit }
+				setLocation={ setLocation }
 				refreshData={ refreshData }
 			/>
 			<AnimatePresence exitBeforeEnter>
@@ -188,7 +170,7 @@ function App() {
 					</Route>
 
 					<Route path="/about">
-						<About />
+						{ weatherData && <About /> }
 					</Route>
 
 				</Switch>

@@ -83,7 +83,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Appbar = ({ appbarBG, handleSubmit, refreshData }) => {
+const Appbar = ({ appbarBG, setLocation, refreshData }) => {
     
     const history = useHistory();
     const location = useLocation();
@@ -142,6 +142,21 @@ const Appbar = ({ appbarBG, handleSubmit, refreshData }) => {
         document.querySelector('header')
                 .style.background = window.scrollY === 0 ? 'transparent' : appbarBG;
     });
+
+    const handleSubmit = (e) => {
+
+		e.preventDefault();
+
+		e.target[0].value = e.target[0].value.trim();
+
+		if(e.target[0].value === '')
+			return;
+
+		setLocation(e.target[0].value);
+		e.target[0].value = '';
+		e.target[0].blur();
+		document.querySelector('header').style.background = 'transparent';
+	};
 
     return (
 

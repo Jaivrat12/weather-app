@@ -13,11 +13,8 @@ const theme = createMuiTheme({
 
     breakpoints: {
         values: {
-            xs: 0,
-            sm: 480,
-            md: 960,
-            lg: 1280,
-            xl: 1920,
+            xs: 0, sm: 480, md: 960,
+            lg: 1280, xl: 1920,
         },
     },
 });
@@ -62,7 +59,6 @@ const useStyles = makeStyles({
     },
 });
 
-// Time according to search-place
 const CurrentDetails = ({ label, details, detailsVariants }) => {
 
     const classes = useStyles();

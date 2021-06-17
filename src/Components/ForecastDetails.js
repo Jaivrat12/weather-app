@@ -83,9 +83,6 @@ const ForecastDetails = ({ weatherData, cols, dateFormat, timezone }) => {
     const classes = useStyles();
 
     const MotionGrid = motion(Grid);
-    
-    // let stepDelay = 0;
-    // const incStepDelay = () => stepDelay += 0.01;
 
 	const loc = useLocation();
     const history = useHistory();
@@ -172,16 +169,6 @@ const ForecastDetails = ({ weatherData, cols, dateFormat, timezone }) => {
                         item
                         xs={ cols.xs } sm={ cols.sm } md={ cols.md } lg={ cols.lg }
                         className={ classes.card }
-                        // initial={{ scale: 0 }}
-                        // animate={{ scale: 1 }}
-                        // transition={{ duration: 0.25, delay: 0.3 + incStepDelay() }}
-                        // exit={{
-                        //     scale: 1,
-                        //     transition: {
-                        //         duration: 0.5,
-                        //         ease: 'easeInOut'
-                        //     }
-                        // }}
                         key={ preview.dt }
                     >
                         <Grid container justify="space-evenly">

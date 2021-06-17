@@ -76,47 +76,47 @@ const ForecastCard = ({ preview, previews, dateFormat, animDelay, timezone }) =>
 
     return (
 
-            <Grid item className={ classes.card }>
-                <motion.div
-                    variants={ cardVariants }
-                    initial="hidden"
-                    animate={ controls }
-                    transition={{ duration: 0.25, delay: 0.5 + animDelay }}
-                    ref={ ref }
-                >
-                    <Paper className={ classes.paper + ' ' + classes.title } elevation={ 0 }>
-                        
-                        { dateFormat === 'hour' && previews[0].dt === preview.dt && 'Now' }
-                        { dateFormat === 'hour' && previews[0].dt !== preview.dt && formatDate(preview.dt, dateFormat, timezone) }
+        <Grid item className={ classes.card }>
+            <motion.div
+                variants={ cardVariants }
+                initial="hidden"
+                animate={ controls }
+                transition={{ duration: 0.25, delay: 0.5 + animDelay }}
+                ref={ ref }
+            >
+                <Paper className={ classes.paper + ' ' + classes.title } elevation={ 0 }>
+                    
+                    { dateFormat === 'hour' && previews[0].dt === preview.dt && 'Now' }
+                    { dateFormat === 'hour' && previews[0].dt !== preview.dt && formatDate(preview.dt, dateFormat, timezone) }
 
-                        { dateFormat === 'day' && previews[0].dt === preview.dt && 'Today' }
-                        { dateFormat === 'day' && previews[1].dt === preview.dt && 'Tomorrow' }
-                        { 
-                            dateFormat === 'day' &&
-                            previews[0].dt !== preview.dt && previews[1].dt !== preview.dt &&
-                            formatDate(preview.dt, dateFormat, timezone) 
-                        }
+                    { dateFormat === 'day' && previews[0].dt === preview.dt && 'Today' }
+                    { dateFormat === 'day' && previews[1].dt === preview.dt && 'Tomorrow' }
+                    { 
+                        dateFormat === 'day' &&
+                        previews[0].dt !== preview.dt && previews[1].dt !== preview.dt &&
+                        formatDate(preview.dt, dateFormat, timezone) 
+                    }
 
-                    </Paper>
-                    <Paper className={ classes.paper } elevation={ 0 }>
-                        <img src={ `https://openweathermap.org/img/wn/${ preview.weather[0].icon }.png` } alt="" />
-                    </Paper>
-                    <Paper className={ classes.paper } elevation={ 0 }>
-                        { capitalize(preview.weather[0].main) }
-                    </Paper>
-                    <Paper className={ classes.paper } elevation={ 0 }>
-                        { !preview.temp.day && preview.temp + ' °C' }
-                        { preview.temp.day && (
+                </Paper>
+                <Paper className={ classes.paper } elevation={ 0 }>
+                    <img src={ `https://openweathermap.org/img/wn/${ preview.weather[0].icon }.png` } alt="" />
+                </Paper>
+                <Paper className={ classes.paper } elevation={ 0 }>
+                    { capitalize(preview.weather[0].main) }
+                </Paper>
+                <Paper className={ classes.paper } elevation={ 0 }>
+                    { !preview.temp.day && preview.temp + ' °C' }
+                    { preview.temp.day && (
 
-                            <Grid container justify="center">
-                                {Math.round(preview.temp.max) + ' °C'}
-                                <Divider orientation="vertical" flexItem />
-                                {Math.round(preview.temp.min) + ' °C'}
-                            </Grid>
-                        )}
-                    </Paper>
-                </motion.div>
-            </Grid>
+                        <Grid container justify="center">
+                            {Math.round(preview.temp.max) + ' °C'}
+                            <Divider orientation="vertical" flexItem />
+                            {Math.round(preview.temp.min) + ' °C'}
+                        </Grid>
+                    )}
+                </Paper>
+            </motion.div>
+        </Grid>
     );
 };
  

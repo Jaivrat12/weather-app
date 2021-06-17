@@ -11,8 +11,6 @@ const renderLoader = (status = 'loading') => {
 	);
 };
 
-// Use Combo box for suggestions
-// And add a Cleanup function
 export const fetchData = async (location) => {
 
 	renderLoader();
@@ -54,8 +52,6 @@ export const fetchData = async (location) => {
 	}
 
 	const weatherData = await response.json();
-	// console.log('weatherData:', weatherData);
-
 	renderLoader('loaded');
 
 	return {

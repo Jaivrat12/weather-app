@@ -79,7 +79,6 @@ const useStyles = makeStyles((theme) => ({
 const About = () => {
 
     const classes = useStyles();
-
 	const MotionContainer = motion(Container);
 
     return (
@@ -107,13 +106,13 @@ const About = () => {
             <Typography variant="body2" className={ classes.body }>
                 Hey there! Thank You for checking out this Web App cuz this was my first one and I'm glad I could 
                 complete it well enough if not perfectly, hope you'd like this. After going through some tutorials 
-                & docs of <a href="https://reactjs.org/" target="_blank" rel="noopener noreferrer">React.js
-                </a> & <a href="#libs">other libraries</a> that are used here, for like 1-2 weeks, I started working on 
-                this Project. It took me 20 days in total to complete this project, first 2-3 days were spent on 
-                researching about Weather Data API, layout-design, features I'd add and other things along those 
-                lines, although I couldn't add every small thing that I wanted to & had to let them go as the ones 
-                which are present here weren't easy at all, given the time I had. It was full of challenges but was 
-                really a fun one to make! Thank you again if you're still reading this lol.
+                & docs of <a href="https://reactjs.org/" target="_blank" rel="noopener noreferrer">React.js</a> &
+                other libraries that are used here, for like 1-2 weeks, I started working on this Project. It took 
+                me 20 days in total to complete this project, first 2-3 days were spent on researching about Weather 
+                Data API, layout-design, features I'd add and other things along those lines, although I couldn't add 
+                every small thing that I wanted to & had to let them go as the ones which are present here weren't easy 
+                at all, given the time I had. It was full of challenges but was really a fun one to make! 
+                Thank you again if you're still reading this lol.
             </Typography>
 
             <Typography variant="h4" className={ classes.heading } gutterBottom>
@@ -177,6 +176,11 @@ const About = () => {
                     </Typography>
                     <ul>
                         <li>
+                            <a href="https://reactjs.org/" target="_blank" rel="noopener noreferrer">
+                                React.js (v17.0.2)
+                            </a>
+                        </li>
+                        <li>
                             <a href="https://openweathermap.org/api" target="_blank" rel="noopener noreferrer">
                                 Open Weather (Weather Data)
                             </a>
@@ -216,12 +220,12 @@ const About = () => {
                         </li>
                         <li>
                             <a href="https://jaivrat12.github.io/digital-clock" target="_blank" rel="noopener noreferrer">
-                                Webpage made with jQuery
+                                Digital Clock
                             </a>
                         </li>
                         <li>
                             <a href="https://jaivrat12.github.io/jQuery-webpage" target="_blank" rel="noopener noreferrer">
-                                Digital Clock
+                                Webpage made using jQuery
                             </a>
                         </li>
                         <li>

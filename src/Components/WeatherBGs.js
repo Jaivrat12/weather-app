@@ -145,8 +145,7 @@ const WeatherBGs = () => {
             </Grid>
         </motion.div>
     );
-}
+};
  
 export default WeatherBGs;
-
 export { setFakeBG };

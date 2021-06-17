@@ -69,7 +69,7 @@ function App() {
 	const classes = useStyles();
 	const loc = useLocation();
 
-	const [location, setLocation] = useState('Indore');
+	const [location, setLocation] = useState('Delhi');
 	const [currLocation, setCurrLocation] = useState(location);
 	const [weatherData, setWeatherData] = useState(null);
 

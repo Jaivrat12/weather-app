@@ -11,13 +11,12 @@ const renderLoader = (status = 'loading') => {
 	);
 };
 
+const { REACT_APP_API_KEY } = process.env;
+
 export const fetchData = async (location) => {
 
 	renderLoader();
-
-	const { REACT_APP_API_KEY } = process.env;
-	// console.log(REACT_APP_API_KEY);
-
+	
 	let endpoint = 'https://api.openweathermap.org/geo/1.0/direct?q=';
 	const appID = '&appid=' + REACT_APP_API_KEY;
 

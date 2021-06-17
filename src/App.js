@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Switch, Route, useLocation } from "react-router-dom";
 
 import Typography from "@material-ui/core/Typography";
@@ -62,7 +62,6 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-// Try removing fetch from forecast details
 function App() {
 
 	setFakeBG(0);
